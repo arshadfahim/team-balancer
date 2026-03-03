@@ -1350,10 +1350,13 @@ try {
       time: new Date(Number(r[0])).toLocaleString("en-US",{ timeZone:"Asia/Dubai" })
     })).sort((a,b)=>b.timestamp-a.timestamp);
 
-    localStorage.setItem("players", JSON.stringify(playersFromCloud));
+    // Only overwrite players if cloud has PIN data
+if (playersFromCloud.some(p => p.pin)) {
+  localStorage.setItem("players", JSON.stringify(playersFromCloud));
+  players = playersFromCloud;
+}
     localStorage.setItem("matchHistory", JSON.stringify(historyFromCloud));
 
-    players = loadPlayers();
     history = loadHistory();
     
     if (typeof lastGeneratedGroups !== "undefined" && lastGeneratedGroups) {
