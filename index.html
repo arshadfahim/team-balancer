@@ -1221,11 +1221,22 @@ pinStatus.textContent = p.pin ? "PIN: SET" : "PIN: NOT SET";
     
     removeBtn.textContent = "Remove";
     removeBtn.style.background = "#dc2626";
-    removeBtn.addEventListener("click", ()=>{
-      players.splice(i,1);
-      // re-render admin UI after removal
-      renderAdminUI();
-    });
+    removeBtn.addEventListener("click", async ()=>{
+  players.splice(i,1);
+
+  // Save immediately to cloud
+  localStorage.setItem("players", JSON.stringify(players));
+
+  await fetch(GOOGLE_API_URL, {
+    method: "POST",
+    body: new URLSearchParams({
+      action: "savePlayers",
+      payload: JSON.stringify(players)
+    })
+  }).catch(err => console.warn("Cloud update failed:", err));
+
+  renderAdminUI();
+});
 
     row.appendChild(nameInput);
     row.appendChild(skillInput);
