@@ -1525,7 +1525,7 @@ if (playersChanged && !isAdminEditing) {
   players = normalizedCloud;
 
   renderPicker();
-  renderAttendance();
+  renderAttendance(false);
 }
     
     localStorage.setItem("matchHistory", JSON.stringify(historyFromCloud));
