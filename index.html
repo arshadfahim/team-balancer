@@ -1359,11 +1359,10 @@ const playersFromCloud = data.players.map(r => ({
       time: new Date(Number(r[0])).toLocaleString("en-US",{ timeZone:"Asia/Dubai" })
     })).sort((a,b)=>b.timestamp-a.timestamp);
 
-    // Only overwrite players if cloud has PIN data
-if (playersFromCloud.some(p => p.pin)) {
-  localStorage.setItem("players", JSON.stringify(playersFromCloud));
-  players = playersFromCloud;
-}
+// Always overwrite players from cloud
+localStorage.setItem("players", JSON.stringify(playersFromCloud));
+players = playersFromCloud;
+    
     localStorage.setItem("matchHistory", JSON.stringify(historyFromCloud));
 
     history = loadHistory();
