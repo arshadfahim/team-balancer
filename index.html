@@ -698,7 +698,9 @@ function renderAttendance(){
     const cb = document.createElement("input");
     cb.type = "checkbox";
     cb.id = "p"+i;
-    cb.checked = true; // all selected by default
+    
+    const previous = document.getElementById("p"+i);
+cb.checked = previous ? previous.checked : true;
 
     cb.addEventListener("change", ()=>{
       updatePlayerCount();
