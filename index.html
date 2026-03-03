@@ -478,12 +478,30 @@ let history = loadHistory();
 /* =========================
    PIN STORAGE (4-6 DIGITS)
 ========================= */
-function loadPins(){
-  return JSON.parse(localStorage.getItem("playerPins") || "{}");
-}
+function requirePin(playerName){
+  players = loadPlayers();
+  const player = players.find(p => p.name === playerName);
+  if(!player) return false;
 
-function savePins(pins){
-  localStorage.setItem("playerPins", JSON.stringify(pins));
+  if(!player.pin){
+    const newPin = prompt(playerName + " - Set a 4 to 6 digit PIN:");
+    if(!/^[0-9]{4,6}$/.test(newPin)){
+      alert("PIN must be 4 to 6 digits only.");
+      return false;
+    }
+    player.pin = newPin;
+    savePlayers(players);   // THIS sends to Google
+    alert("PIN set successfully.");
+    return true;
+  }
+
+  const entered = prompt(playerName + " - Enter your PIN:");
+  if(entered === player.pin){
+    return true;
+  } else {
+    alert("Incorrect PIN.");
+    return false;
+  }
 }
 
 function isValidPin(pin){
