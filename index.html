@@ -1179,12 +1179,11 @@ pinStatus.textContent = p.pin ? "PIN: SET" : "PIN: NOT SET";
     resetPinBtn.style.background = "#f59e0b";
     resetPinBtn.style.marginLeft = "6px";
     resetPinBtn.addEventListener("click", ()=>{
-      const pins = loadPins();
-      delete pins[p.name];
-      savePins(pins);
-      alert("PIN reset. Player will be prompted to set new PIN.");
-      renderAdminUI();
-    });
+  players[i].pin = "";
+  localStorage.setItem("players", JSON.stringify(players));
+  alert("PIN reset. Player will be prompted to set new PIN.");
+  renderAdminUI();
+});
     
     removeBtn.textContent = "Remove";
     removeBtn.style.background = "#dc2626";
