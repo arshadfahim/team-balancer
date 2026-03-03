@@ -1032,6 +1032,7 @@ function onSelectOption(option){
 }
 
 function saveMatch(option){
+  showStatus("Saving team selection...", "info");
   const picker = pickerSelect.value;
   const entry = {
     time: dubaiTimeString(),
@@ -1057,7 +1058,7 @@ fetch(GOOGLE_API_URL, {
   })
 }).catch(err => console.warn("Cloud save failed:", err));
 
-  alert("Match Saved!");
+  showStatus("Team selection saved successfully.", "success");
 
   if(historyPage.style.display !== "none"){
     populateHistoryFilter();
