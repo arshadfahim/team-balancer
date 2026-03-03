@@ -366,6 +366,10 @@
       cursor:pointer;
       font-weight: 900;
     }
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
   </style>
 </head>
 
@@ -445,28 +449,49 @@
 ========================= */
 const ADMIN_PASSWORD = "UT4L!FE";
 
-  function showStatus(message, type = "info") {
+  function showStatus(message, type = "info", persistent = false) {
   const bar = document.getElementById("statusBar");
   if (!bar) return;
 
-  bar.textContent = message;
+  const spinner = `
+    <span style="
+      display:inline-block;
+      width:14px;
+      height:14px;
+      border:2px solid rgba(255,255,255,0.4);
+      border-top:2px solid white;
+      border-radius:50%;
+      margin-right:8px;
+      animation: spin 0.7s linear infinite;
+      vertical-align:middle;
+    "></span>
+  `;
 
-  if (type === "success") {
+  if (type === "loading") {
+    bar.innerHTML = spinner + message;
+    bar.style.background = "#334155";
+    bar.style.color = "white";
+  } else if (type === "success") {
+    bar.textContent = message;
     bar.style.background = "#16a34a";
     bar.style.color = "white";
   } else if (type === "error") {
+    bar.textContent = message;
     bar.style.background = "#dc2626";
     bar.style.color = "white";
   } else {
+    bar.textContent = message;
     bar.style.background = "#334155";
     bar.style.color = "white";
   }
 
   bar.style.display = "block";
 
-  setTimeout(() => {
-    bar.style.display = "none";
-  }, 2500);
+  if (!persistent && type !== "loading") {
+    setTimeout(() => {
+      bar.style.display = "none";
+    }, 2500);
+  }
 }
 
 const defaultPlayers = [
@@ -1032,7 +1057,9 @@ function onSelectOption(option){
 }
 
 function saveMatch(option){
-  showStatus("Saving team selection...", "info");
+  
+  showStatus("Saving team selection...", "loading", true);
+  
   const picker = pickerSelect.value;
   const entry = {
     time: dubaiTimeString(),
@@ -1056,8 +1083,14 @@ fetch(GOOGLE_API_URL, {
     action: "saveMatch",
     payload: JSON.stringify(entry)
   })
-}).catch(err => console.warn("Cloud save failed:", err));
-
+})
+.then(() => {
+  showStatus("Team selection saved successfully.", "success");
+})
+.catch(err => {
+  console.warn("Cloud save failed:", err);
+  showStatus("Unable to save team selection.", "error");
+});
   showStatus("Team selection saved successfully.", "success");
 
   if(historyPage.style.display !== "none"){
@@ -1157,10 +1190,15 @@ function renderHistory(){
 
 document.getElementById("clearHistoryBtn").addEventListener("click", ()=>{
   const pass = prompt("Enter Admin Password:");
-  if(pass !== ADMIN_PASSWORD){ alert("Incorrect password."); return; }
+if(pass !== ADMIN_PASSWORD){ 
+  showStatus("Incorrect password.", "error"); 
+  return; 
+}
  
   if(confirm("Clear all history?")){
  
+  showStatus("Clearing history...", "loading", true);
+    
   fetch(GOOGLE_API_URL, {
     method: "POST",
     body: new URLSearchParams({
@@ -1358,6 +1396,8 @@ pinStatus.textContent = p.pin ? "PIN: SET" : "PIN: NOT SET";
     .sort((a,b)=>a.name.localeCompare(b.name));
 
   localStorage.setItem("players", JSON.stringify(players));
+
+  showStatus("Saving changes...", "loading", true);
 
   try {
     await fetch(GOOGLE_API_URL, {
