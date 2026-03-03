@@ -1334,10 +1334,11 @@ try {
 }
     if (!data.players || !data.history) return;
 
-    const playersFromCloud = data.players.map(r => ({
-      name: String(r[0] || "").trim(),
-      skill: Number(r[1])
-    })).filter(p => p.name && !isNaN(p.skill));
+const playersFromCloud = data.players.map(r => ({
+  name: String(r[0] || "").trim(),
+  skill: Number(r[1]),
+  pin: r[2] ? String(r[2]) : ""
+})).filter(p => p.name && !isNaN(p.skill));
 
     const historyFromCloud = data.history.map(r => ({
       timestamp: Number(r[0]),
