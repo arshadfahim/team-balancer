@@ -1222,18 +1222,27 @@ pinStatus.textContent = p.pin ? "PIN: SET" : "PIN: NOT SET";
     removeBtn.textContent = "Remove";
     removeBtn.style.background = "#dc2626";
     removeBtn.addEventListener("click", async ()=>{
-  players.splice(i,1);
 
-  // Save immediately to cloud
+  const confirmDelete = confirm("Remove " + players[i].name + "?");
+  if(!confirmDelete) return;
+
+  const updated = players.filter((_, index) => index !== i);
+
+  players = updated;
+
   localStorage.setItem("players", JSON.stringify(players));
 
-  await fetch(GOOGLE_API_URL, {
-    method: "POST",
-    body: new URLSearchParams({
-      action: "savePlayers",
-      payload: JSON.stringify(players)
-    })
-  }).catch(err => console.warn("Cloud update failed:", err));
+  try {
+    await fetch(GOOGLE_API_URL, {
+      method: "POST",
+      body: new URLSearchParams({
+        action: "savePlayers",
+        payload: JSON.stringify(players)
+      })
+    });
+  } catch (err) {
+    console.warn("Cloud update failed:", err);
+  }
 
   renderAdminUI();
 });
