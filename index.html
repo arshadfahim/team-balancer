@@ -1383,13 +1383,17 @@ const playersFromCloud = data.players.map(r => ({
       time: new Date(Number(r[0])).toLocaleString("en-US",{ timeZone:"Asia/Dubai" })
     })).sort((a,b)=>b.timestamp-a.timestamp);
 
-// Always overwrite players from cloud
-localStorage.setItem("players", JSON.stringify(playersFromCloud));
-players = playersFromCloud;
+// Only update players if they actually changed
+const playersChanged =
+  JSON.stringify(playersFromCloud) !== JSON.stringify(players);
 
-// Refresh UI to reflect cloud data
-renderPicker();
-renderAttendance();
+if (playersChanged) {
+  localStorage.setItem("players", JSON.stringify(playersFromCloud));
+  players = playersFromCloud;
+
+  renderPicker();
+  renderAttendance();
+}
     
     localStorage.setItem("matchHistory", JSON.stringify(historyFromCloud));
 
@@ -1411,7 +1415,7 @@ renderAttendance();
 }
 
 setTimeout(() => cloudSync(true), 500);
-setInterval(() => cloudSync(false), 3000);
+setInterval(() => cloudSync(false), 5000);
 </script>
 </body>
 </html>
