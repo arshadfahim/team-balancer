@@ -490,7 +490,8 @@ function requirePin(playerName){
       return false;
     }
     player.pin = newPin;
-    savePlayers(players);   // THIS sends to Google
+    localStorage.setItem("players", JSON.stringify(players));
+savePlayers();
     alert("PIN set successfully.");
     return true;
   }
