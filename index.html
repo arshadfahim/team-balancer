@@ -1362,6 +1362,10 @@ const playersFromCloud = data.players.map(r => ({
 // Always overwrite players from cloud
 localStorage.setItem("players", JSON.stringify(playersFromCloud));
 players = playersFromCloud;
+
+// Refresh UI to reflect cloud data
+renderPicker();
+renderAttendance();
     
     localStorage.setItem("matchHistory", JSON.stringify(historyFromCloud));
 
