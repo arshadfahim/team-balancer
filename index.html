@@ -473,7 +473,7 @@ function loadHistory(){
 
 let players = loadPlayers();
 let history = loadHistory();
-
+let isAdminEditing = false;
 
 /* =========================
    PIN STORAGE (4-6 DIGITS)
@@ -1289,7 +1289,8 @@ pinStatus.textContent = p.pin ? "PIN: SET" : "PIN: NOT SET";
   closeBtn.style.fontWeight = "900";
   closeBtn.style.cursor = "pointer";
   closeBtn.addEventListener("click", ()=>{
-    // Go back to Generator
+    isAdminEditing = false;
+    
     generatorPage.style.display = "block";
     historyPage.style.display = "none";
   adminPage.style.display = "none";
@@ -1342,6 +1343,8 @@ document.getElementById("adminTab").addEventListener("click", ()=>{
   const pass = prompt("Enter Admin Password:");
   if(pass !== ADMIN_PASSWORD){ alert("Incorrect password."); return; }
 
+  isAdminEditing = true;
+  
   generatorPage.style.display = "none";
   historyPage.style.display = "none";
   adminPage.style.display = "none";
@@ -1428,7 +1431,7 @@ const normalizedLocal = normalize(players);
 const playersChanged =
   JSON.stringify(normalizedCloud) !== JSON.stringify(normalizedLocal);
 
-if (playersChanged) {
+if (playersChanged && !isAdminEditing) {
   localStorage.setItem("players", JSON.stringify(normalizedCloud));
   players = normalizedCloud;
 
