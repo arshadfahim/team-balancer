@@ -479,7 +479,6 @@ let history = loadHistory();
    PIN STORAGE (4-6 DIGITS)
 ========================= */
 function requirePin(playerName){
-  players = loadPlayers();
   const player = players.find(p => p.name === playerName);
   if(!player) return false;
 
