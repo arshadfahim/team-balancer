@@ -461,7 +461,7 @@ function loadPlayers(){
   const saved = JSON.parse(localStorage.getItem("players") || "null");
   const arr = Array.isArray(saved) && saved.length ? saved : defaultPlayers;
   return arr
-    .map(p => ({name: String(p.name||"").trim(), skill: Number(p.skill)}))
+    .map(p => ({   name: String(p.name||"").trim(),   skill: Number(p.skill),   pin: p.pin ? String(p.pin) : "" }))
     .filter(p => p.name && Number.isFinite(p.skill))
     .sort((a,b)=>a.name.localeCompare(b.name));
 }
@@ -1167,13 +1167,12 @@ function renderAdminUI(){
     skillInput.addEventListener("input", (e)=>{ players[i].skill = Number(e.target.value); });
 
     const removeBtn = document.createElement("button");
-    const pins = loadPins();
-
+    
     const pinStatus = document.createElement("span");
     pinStatus.style.fontSize = "12px";
     pinStatus.style.marginLeft = "8px";
     pinStatus.style.fontWeight = "700";
-    pinStatus.textContent = pins[p.name] ? "PIN: SET" : "PIN: NOT SET";
+pinStatus.textContent = p.pin ? "PIN: SET" : "PIN: NOT SET";
 
     const resetPinBtn = document.createElement("button");
     resetPinBtn.textContent = "Reset PIN";
