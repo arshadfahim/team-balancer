@@ -1532,10 +1532,10 @@ if (playersChanged && !isAdminEditing) {
 
     history = loadHistory();
     
-    if (typeof lastGeneratedGroups !== "undefined" && lastGeneratedGroups) {
-      renderOptions(lastGeneratedGroups);
-      updateRadioCounts(lastGeneratedGroups);
-    }
+if (playersChanged && lastGeneratedGroups) {
+  renderOptions(lastGeneratedGroups);
+  updateRadioCounts(lastGeneratedGroups);
+}
 
     if (typeof historyPage !== "undefined" && historyPage.style.display !== "none") {
       populateHistoryFilter();
