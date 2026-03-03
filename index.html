@@ -1246,6 +1246,8 @@ pinStatus.textContent = p.pin ? "PIN: SET" : "PIN: NOT SET";
 
   renderAdminUI(); // instant UI update
 
+  showStatus("Player removed successfully.", "success");
+
   });
 
     row.appendChild(nameInput);
@@ -1280,6 +1282,7 @@ pinStatus.textContent = p.pin ? "PIN: SET" : "PIN: NOT SET";
     adminDirty = true;
     players.sort((a,b)=>a.name.localeCompare(b.name));
     renderAdminUI();
+    showStatus("Player added successfully.", "success");
   });
 
   addRow.appendChild(newName);
@@ -1340,14 +1343,14 @@ pinStatus.textContent = p.pin ? "PIN: SET" : "PIN: NOT SET";
       })
     });
 
-    alert("Saved to Google Sheets successfully.");
+showStatus("Changes saved successfully.", "success");
 
     adminDirty = false;
     renderAdminUI();
 
   } catch (err) {
     console.warn("Cloud update failed:", err);
-    alert("Failed to save to Sheets.");
+    showStatus("Unable to save changes. Please try again.", "error");
   }
 
   resetGeneratedTeams();
