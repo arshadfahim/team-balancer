@@ -690,7 +690,7 @@ function renderPicker(){
   }
 }
 
-function renderAttendance(){
+function renderAttendance(resetAll = false){
   attendanceDiv.innerHTML = "";
   players.forEach((p,i)=>{
     const label = document.createElement("label");
@@ -699,8 +699,12 @@ function renderAttendance(){
     cb.type = "checkbox";
     cb.id = "p"+i;
     
-    const previous = document.getElementById("p"+i);
-cb.checked = previous ? previous.checked : true;
+if (resetAll) {
+  cb.checked = true;
+} else {
+  const previous = document.getElementById("p"+i);
+  cb.checked = previous ? previous.checked : true;
+}
 
     cb.addEventListener("change", ()=>{
       updatePlayerCount();
@@ -752,6 +756,7 @@ function resetGeneratedTeams(){
 /* When picker changes: reset page (but keep attendance selection) */
 pickerSelect.addEventListener("change", ()=>{
   resetGeneratedTeams();
+  renderAttendance(true); // reset all to checked
 });
 
 /* =========================
