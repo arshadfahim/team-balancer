@@ -1124,7 +1124,16 @@ function renderHistory(){
 document.getElementById("clearHistoryBtn").addEventListener("click", ()=>{
   const pass = prompt("Enter Admin Password:");
   if(pass !== ADMIN_PASSWORD){ alert("Incorrect password."); return; }
+ 
   if(confirm("Clear all history?")){
+ 
+  fetch(GOOGLE_API_URL, {
+    method: "POST",
+    body: new URLSearchParams({
+      action: "clearHistory"
+    })
+  })
+  .then(() => {
     localStorage.removeItem("matchHistory");
     history = [];
     populateHistoryFilter();
@@ -1133,6 +1142,15 @@ document.getElementById("clearHistoryBtn").addEventListener("click", ()=>{
     if(lastGeneratedGroups){
       renderOptions(lastGeneratedGroups);
     }
+
+    alert("History cleared successfully.");
+  })
+  .catch(err => {
+    console.warn("Failed to clear history:", err);
+    alert("Failed to clear history.");
+  });
+
+}
   }
 });
 
