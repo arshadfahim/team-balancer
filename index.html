@@ -1394,13 +1394,25 @@ const playersFromCloud = data.players.map(r => ({
       time: new Date(Number(r[0])).toLocaleString("en-US",{ timeZone:"Asia/Dubai" })
     })).sort((a,b)=>b.timestamp-a.timestamp);
 
-// Only update players if they actually changed
+// Normalize and compare players before overwriting
+const normalize = arr =>
+  [...arr]
+    .map(p => ({
+      name: String(p.name).trim(),
+      skill: Number(p.skill),
+      pin: p.pin || ""
+    }))
+    .sort((a,b)=>a.name.localeCompare(b.name));
+
+const normalizedCloud = normalize(playersFromCloud);
+const normalizedLocal = normalize(players);
+
 const playersChanged =
-  JSON.stringify(playersFromCloud) !== JSON.stringify(players);
+  JSON.stringify(normalizedCloud) !== JSON.stringify(normalizedLocal);
 
 if (playersChanged) {
-  localStorage.setItem("players", JSON.stringify(playersFromCloud));
-  players = playersFromCloud;
+  localStorage.setItem("players", JSON.stringify(normalizedCloud));
+  players = normalizedCloud;
 
   renderPicker();
   renderAttendance();
