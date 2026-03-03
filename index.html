@@ -1299,21 +1299,39 @@ pinStatus.textContent = p.pin ? "PIN: SET" : "PIN: NOT SET";
   const saveBtn = document.createElement("button");
   saveBtn.className = "primary";
   saveBtn.textContent = "Save";
-  saveBtn.addEventListener("click", ()=>{
-    players = players
-      .map(p=>({name:String(p.name||"").trim(), skill:Number(p.skill)}))
-      .filter(p=>p.name && Number.isFinite(p.skill))
-      .sort((a,b)=>a.name.localeCompare(b.name));
+  saveBtn.addEventListener("click", async ()=>{
 
-    localStorage.setItem("players", JSON.stringify(players));
+  players = players
+    .map(p => ({
+      name: String(p.name || "").trim(),
+      skill: Number(p.skill),
+      pin: p.pin || ""
+    }))
+    .filter(p => p.name && Number.isFinite(p.skill))
+    .sort((a,b)=>a.name.localeCompare(b.name));
 
-    // Rebuild UI
-    resetGeneratedTeams();
-    renderPicker();
-    renderAttendance();
+  localStorage.setItem("players", JSON.stringify(players));
 
-    alert("Saved. Teams reset.");
-  });
+  try {
+    await fetch(GOOGLE_API_URL, {
+      method: "POST",
+      body: new URLSearchParams({
+        action: "savePlayers",
+        payload: JSON.stringify(players)
+      })
+    });
+
+    alert("Saved to Google Sheets successfully.");
+
+  } catch (err) {
+    console.warn("Cloud update failed:", err);
+    alert("Failed to save to Sheets.");
+  }
+
+  resetGeneratedTeams();
+  renderPicker();
+  renderAttendance();
+});
 
   actions.appendChild(closeBtn);
   actions.appendChild(saveBtn);
