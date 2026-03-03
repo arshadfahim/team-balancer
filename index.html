@@ -884,7 +884,7 @@ document.getElementById("generateBtn").addEventListener("click", generateTeams);
 function generateTeams(){
   const picker = pickerSelect.value;
   if(!picker){
-    alert("Select team picker first.");
+showStatus("Please select a team picker before generating teams.", "error");
     return;
   }
 
