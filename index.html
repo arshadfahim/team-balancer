@@ -1351,11 +1351,7 @@ try {
 
     players = loadPlayers();
     history = loadHistory();
-
-    renderPicker();
-    renderAttendance();
-    updatePlayerCount();
-
+    
     if (typeof lastGeneratedGroups !== "undefined" && lastGeneratedGroups) {
       renderOptions(lastGeneratedGroups);
       updateRadioCounts(lastGeneratedGroups);
