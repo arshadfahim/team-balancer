@@ -509,29 +509,6 @@ function isValidPin(pin){
   return /^[0-9]{4,6}$/.test(pin);
 }
 
-function requirePin(playerName){
-  const pins = loadPins();
-
-  if(!pins[playerName]){
-    const newPin = prompt(playerName + " - Set a 4 to 6 digit PIN:");
-    if(!newPin || !isValidPin(newPin)){
-      alert("PIN must be 4 to 6 digits only.");
-      return false;
-    }
-    pins[playerName] = newPin;
-    savePins(pins);
-    alert("PIN set successfully.");
-    return true;
-  } else {
-    const entered = prompt(playerName + " - Enter your PIN:");
-    if(!isValidPin(entered) || entered !== pins[playerName]){
-      alert("Incorrect PIN.");
-      return false;
-    }
-    return true;
-  }
-}
-
 /* =========================
    ELEMENTS
 ========================= */
