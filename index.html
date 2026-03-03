@@ -1316,6 +1316,13 @@ pinStatus.textContent = p.pin ? "PIN: SET" : "PIN: NOT SET";
   const saveBtn = document.createElement("button");
   saveBtn.className = "primary";
   saveBtn.textContent = "Save";
+
+  if(!adminDirty){
+  saveBtn.disabled = true;
+  saveBtn.style.opacity = "0.5";
+  saveBtn.style.cursor = "not-allowed";
+}
+  
   saveBtn.addEventListener("click", async ()=>{
 
   players = players
@@ -1339,6 +1346,9 @@ pinStatus.textContent = p.pin ? "PIN: SET" : "PIN: NOT SET";
     });
 
     alert("Saved to Google Sheets successfully.");
+
+    adminDirty = false;
+    renderAdminUI();
 
   } catch (err) {
     console.warn("Cloud update failed:", err);
