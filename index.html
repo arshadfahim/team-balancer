@@ -445,6 +445,30 @@
 ========================= */
 const ADMIN_PASSWORD = "UT4L!FE";
 
+  function showStatus(message, type = "info") {
+  const bar = document.getElementById("statusBar");
+  if (!bar) return;
+
+  bar.textContent = message;
+
+  if (type === "success") {
+    bar.style.background = "#16a34a";
+    bar.style.color = "white";
+  } else if (type === "error") {
+    bar.style.background = "#dc2626";
+    bar.style.color = "white";
+  } else {
+    bar.style.background = "#334155";
+    bar.style.color = "white";
+  }
+
+  bar.style.display = "block";
+
+  setTimeout(() => {
+    bar.style.display = "none";
+  }, 2500);
+}
+
 const defaultPlayers = [
   {name:"Garry",skill:3},
   {name:"Ibrahim",skill:4},
