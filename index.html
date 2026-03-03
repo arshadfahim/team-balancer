@@ -1176,11 +1176,11 @@ document.getElementById("clearHistoryBtn").addEventListener("click", ()=>{
       renderOptions(lastGeneratedGroups);
     }
 
-    alert("History cleared successfully.");
+showStatus("History cleared successfully.", "success");
   })
   .catch(err => {
     console.warn("Failed to clear history:", err);
-    alert("Failed to clear history.");
+    showStatus("Unable to clear history. Please try again.", "error");
   });
 
 }
