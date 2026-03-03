@@ -474,6 +474,7 @@ function loadHistory(){
 let players = loadPlayers();
 let history = loadHistory();
 let isAdminEditing = false;
+let adminDirty = false;
 
 /* =========================
    PIN STORAGE (4-6 DIGITS)
@@ -1168,10 +1169,19 @@ function renderAdminUI(){
   adminSection.innerHTML = "";
 
   const title = document.createElement("div");
-  title.style.fontWeight = "900";
-  title.style.marginBottom = "6px";
-  title.textContent = "Admin: Edit Players";
-  adminSection.appendChild(title);
+title.style.fontWeight = "900";
+title.style.marginBottom = "4px";
+title.textContent = "Admin: Edit Players";
+adminSection.appendChild(title);
+
+const status = document.createElement("div");
+status.id = "adminStatus";
+status.style.fontSize = "13px";
+status.style.marginBottom = "10px";
+status.style.fontWeight = "700";
+status.style.color = adminDirty ? "#f59e0b" : "#22c55e";
+status.textContent = adminDirty ? "● Unsaved Changes" : "● All Changes Saved";
+adminSection.appendChild(status);
 
   players.forEach((p,i)=>{
     const row = document.createElement("div");
@@ -1180,7 +1190,11 @@ function renderAdminUI(){
     const nameInput = document.createElement("input");
     nameInput.value = p.name;
     nameInput.placeholder = "Name";
-    nameInput.addEventListener("input", (e)=>{ players[i].name = e.target.value; });
+    nameInput.addEventListener("input", (e)=>{
+  players[i].name = e.target.value;
+  adminDirty = true;
+  renderAdminUI();
+});
 
     const skillInput = document.createElement("input");
     skillInput.type = "number";
@@ -1188,7 +1202,11 @@ function renderAdminUI(){
     skillInput.max = "20";
     skillInput.value = String(p.skill);
     skillInput.placeholder = "Skill";
-    skillInput.addEventListener("input", (e)=>{ players[i].skill = Number(e.target.value); });
+    skillInput.addEventListener("input", (e)=>{
+  players[i].skill = Number(e.target.value);
+  adminDirty = true;
+  renderAdminUI();
+});
 
     const removeBtn = document.createElement("button");
     
@@ -1227,6 +1245,7 @@ pinStatus.textContent = p.pin ? "PIN: SET" : "PIN: NOT SET";
   if(!confirmDelete) return;
 
   players = players.filter((_, index) => index !== i);
+  adminDirty = true;
 
   localStorage.setItem("players", JSON.stringify(players));
 
@@ -1263,6 +1282,7 @@ pinStatus.textContent = p.pin ? "PIN: SET" : "PIN: NOT SET";
     if(!name || !Number.isFinite(skill)){ alert("Enter valid name and skill."); return; }
     if(players.some(p=>p.name.toLowerCase() === name.toLowerCase())){ alert("That name already exists."); return; }
     players.push({name, skill});
+    adminDirty = true;
     players.sort((a,b)=>a.name.localeCompare(b.name));
     renderAdminUI();
   });
