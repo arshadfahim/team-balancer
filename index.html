@@ -384,7 +384,7 @@
 
     <!-- Generator -->
     <div id="generatorPage">
-      <h3 style="text-align:center;">Today's Team Picker</h3>
+      <h3 style="text-align:center;">Match Maker</h3>
       <select id="pickerSelect"></select>
 
       <div id="selectedTeamBanner" class="selected-banner" style="display:none;">
@@ -725,7 +725,7 @@ window.addEventListener("resize", ()=>{ if(lastGeneratedGroups) fitAndMarkAllTea
 ========================= */
 function renderPicker(){
   const current = pickerSelect.value;
-  pickerSelect.innerHTML = '<option value="" disabled>-- Select Picker --</option>';
+  pickerSelect.innerHTML = '<option value="" disabled>-- Select Match Maker --</option>';
   players.forEach(p=>{
     const opt = document.createElement("option");
     opt.value = p.name;
@@ -884,7 +884,7 @@ document.getElementById("generateBtn").addEventListener("click", generateTeams);
 function generateTeams(){
   const picker = pickerSelect.value;
   if(!picker){
-showStatus("Please select a team picker before generating teams.", "error");
+showStatus("Select the Match Maker before generating matchups.", "error");
     return;
   }
 
