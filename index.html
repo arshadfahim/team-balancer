@@ -393,6 +393,19 @@ button.primary{
   margin-top:6px;
   font-weight:700;
 }
+
+#infoPage h2,
+#infoPage h3{
+  font-size:18px;
+  font-weight:700;
+  margin-top:18px;
+  margin-bottom:8px;
+}
+
+#infoPage p{
+  font-size:14px;
+  line-height:1.6;
+}
     
   </style>
 </head>
@@ -443,48 +456,54 @@ button.primary{
 
 <h2>How Matchups Are Generated</h2>
 
-<p>The team balancer creates all possible team combinations and compares the total skill of each team to find the most balanced matchups.</p>
+<p>The Team Balancer generates all possible team combinations using the selected players.
+Each team’s total skill is calculated and compared to find the most balanced matchups.
 
-<h3>Even Number of Players</h3>
+To keep the list manageable and easy to review, only matchups with a skill difference between 0 and 4 are shown.</p>
 
-<p>When the number of players is even (for example 10 players), the teams are split evenly.</p>
+<h2>Even Number of Players</h2>
 
-<p><b>Example:</b></p>
-<p>Blue: 5 players<br>
-Red: 5 players</p>
+<p>When the number of players is even, teams are split evenly.
 
-<p>All possible team combinations are generated and sorted by how close the total skill is between the two teams.  
-To keep the results manageable, only matchups with a skill difference of **0 to 4** are shown.</p>
+Example with 10 players:
 
-<p><b>Example result:</b></p>
-<p>Blue Skill: 27<br>
-Red Skill: 27<br>
-Difference: 0 (Perfect Balance)</p>
+Blue Team: 5 players
+Red Team: 5 players
 
-<h3>Uneven Number of Players</h3>
+The system evaluates all possible team combinations and ranks them by how close the total skill is between the teams.
 
-<p>When the number of players is uneven (for example 9 players), the smaller team is automatically assigned to Blue.
+Example:
 
-Because the Red team has more players, the balancer only shows matchups where Blue has a skill advantage. This prevents Red from having both more players and higher total skill.
+Blue Skill: 27
+Red Skill: 27
+Difference: 0 (Perfect Balance)
 
-This rule is especially helpful for the BLITZ game mode. In BLITZ, each player only has 5 lives when defending. A team with fewer players therefore has fewer total lives available.
+Multiple balanced matchups may be shown so the Match Maker can choose the one they prefer.</p>
 
-To help balance this, the system slightly favors the smaller Blue team by allowing a small skill advantage.</p>
+<h2>Uneven Number of Players</h2>
 
-<p><b>Example:</b></p>
-<p>Blue: 4 players<br>
-Red: 5 players</p>
-<h3>Why Blue Advantage Exists</h3>
-<p>When the number of players is uneven, the smaller team is automatically assigned to <b>Blue</b>.</p>
+<p>When the number of players is uneven, the smaller team is automatically assigned to Blue.
 
-<p>Because the Red team already has more players, only matchups where <b>Blue has a skill advantage</b> are shown. This prevents Red from having both more players and higher total skill.</p>
+Example with 9 players:
 
-<p>This rule is especially useful for the <b>BLITZ</b> game mode. In BLITZ, each player only has <b>5 lives</b> when defending. A team with fewer players therefore has fewer total lives available.</p>
+Blue Team: 4 players
+Red Team: 5 players
 
-<p>To help balance this, the system slightly favors the smaller Blue team by allowing a small skill advantage.</p>
+Because the Red team already has more players, only matchups where Blue has a skill advantage are shown.
+This prevents Red from having both more players and higher total skill.</p>
+      
+<h2>Why Blue Advantage Exists</h2>
+      
+<p>This rule is especially helpful in the BLITZ game mode.
 
-<p>To keep the list of matchups manageable, only results with a skill difference of <b>0 to 4</b> are shown.</p>
-<p><b>Example result:</b></p>
+In BLITZ, each defending player only has 5 lives.
+A team with fewer players therefore has fewer total lives available.
+
+To help balance this disadvantage, the smaller Blue team may receive a small skill advantage.
+
+This increases the chances of the match being competitive even when the teams have different player counts.</p>
+      
+<h2>Example result:</h2>
 
 <div class="info-example">
 
