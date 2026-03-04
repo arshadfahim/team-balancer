@@ -497,16 +497,20 @@ button.primary{
       z-index: 999;
     }
 
-    .history-controls{
+.history-controls{
   display:flex;
   gap:10px;
-  align-items:center;
+  align-items:stretch;
   flex-wrap:wrap;
   margin-top:6px;
 }
 
 .history-controls select{
   flex:1;
+}
+
+.history-controls button{
+  height:100%;
 }
     .modal{
       width: min(720px, 96vw);
