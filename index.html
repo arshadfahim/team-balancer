@@ -1331,7 +1331,7 @@ function renderOptions(groups){
 
     displayList.forEach(option=>{
       const row = document.createElement("div");
-      row.className = `team-row diff-${option.diff}`;
+      row.className = `team-row diff-${option.diff >= 5 ? 5 : option.diff}`;
       if(selectedTeamKey && option.teamKey === selectedTeamKey) row.classList.add("selected-option");
 
       const info = document.createElement("div");
