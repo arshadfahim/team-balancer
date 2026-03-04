@@ -373,6 +373,7 @@ button.primary{
         <div class="tabs">
       <button id="genTab">Generator</button>
       <button id="histTab">History</button>
+      <button id="infoTab">Info</button>
       <button id="adminTab">Admin</button>
     </div>
 
@@ -408,6 +409,47 @@ button.primary{
       <div id="result"></div>
     </div>
 
+    <div id="infoPage" style="display:none; max-width:800px; margin:auto; line-height:1.6;">
+
+<h2>How Matchups Are Generated</h2>
+
+<p>The team balancer creates all possible team combinations and compares the total skill of each team to find the most balanced matchups.</p>
+
+<h3>Even Number of Players</h3>
+
+<p>When the number of players is even (for example 10 players), the teams are split evenly.</p>
+
+<p><b>Example:</b></p>
+<p>Blue: 5 players<br>
+Red: 5 players</p>
+
+<p>All possible team combinations are generated and sorted by how close the total skill is between the two teams.</p>
+
+<p><b>Example result:</b></p>
+<p>Blue Skill: 27<br>
+Red Skill: 27<br>
+Difference: 0 (Perfect Balance)</p>
+
+<h3>Uneven Number of Players</h3>
+
+<p>When the number of players is uneven (for example 9 players), the smaller team is automatically assigned to Blue.</p>
+
+<p><b>Example:</b></p>
+<p>Blue: 4 players<br>
+Red: 5 players</p>
+
+<p>Because Red has more players, only matchups where Blue has an advantage are shown.</p>
+
+<p>The allowed balance range is <b>0–4 advantage for Blue</b>.</p>
+
+<p>Red advantage combinations are hidden because Red already has more players.</p>
+
+<p><b>Example result:</b></p>
+<p>Blue Skill: 25<br>
+Red Skill: 22<br>
+Blue Advantage: +3</p>
+
+</div>
 
     <!-- Admin -->
     <div id="adminPage" style="display:none;">
@@ -580,6 +622,7 @@ const generatorPage = document.getElementById("generatorPage");
 const historyFilter = document.getElementById("historyFilter");
 const historyList = document.getElementById("historyList");
 const adminPage = document.getElementById("adminPage");
+const infoPage = document.getElementById("infoPage");
 
 /* Modal */
 const modalOverlay = document.getElementById("modalOverlay");
@@ -1364,7 +1407,7 @@ pinStatus.textContent = p.pin ? "PIN: SET" : "PIN: NOT SET";
     
     generatorPage.style.display = "block";
     historyPage.style.display = "none";
-  adminPage.style.display = "none";
+    infoPage.style.display = "none";
     adminPage.style.display = "none";
   });
 
