@@ -1355,10 +1355,13 @@ function onSelectOption(option){
   selectedTeamKey = option.teamKey;
 
   // show splash banner
-  showSelectedBanner(option);
+showSelectedBanner(option);
 
-  // save selection
-  saveMatch(option);
+// scroll to banner
+selectedTeamBanner.scrollIntoView({ behavior: "smooth", block: "start" });
+
+// save selection
+saveMatch(option);
 
   // reset generator UI
   resultDiv.innerHTML = "";
