@@ -174,33 +174,27 @@
       cursor:not-allowed;
     }
 
-    button.primary{
-      background:#22c55e;
-      color:#0b1225;
-      font-weight: 900;
-      padding: 10px 14px;
-      border:none;
-      border-radius: 12px;
-      cursor:pointer;
-      font-size: clamp(14px, 2vw, 16px);
-      flex: 0 0 auto;
-    }
-    button.admin{
-      background:#f59e0b;
-      color:#0b1225;
-      font-weight: 900;
-      padding: 10px 14px;
-      border:none;
-      border-radius: 12px;
-      cursor:pointer;
-      font-size: clamp(14px, 2vw, 16px);
-      flex: 0 0 auto;
-    }
+button.primary{
+  background:#22c55e;
+  color:#0b1225;
+  font-weight:900;
+  padding:10px 14px;
+  border:none;
+  border-radius:12px;
+  cursor:pointer;
+  font-size:clamp(14px, 2vw, 16px);
+  flex:0 0 auto;
+}
+
+.generate-btn{
+  width:100%;
+  display:block;
+}
     button.danger{
       background:#dc2626;
       color:white;
       font-weight: 900;
-      padding: 10px 14px;
+      padding: 14px 16px;
       border:none;
       border-radius: 12px;
       cursor:pointer;
@@ -397,7 +391,7 @@
       <div id="attendance" class="player-grid"></div>
 
       <div class="controls">
-        <button id="generateBtn" class="primary">Generate Options</button>
+<button id="generateBtn" class="primary generate-btn">Generate Matchups</button>
         
 
         <div class="radio-row">
