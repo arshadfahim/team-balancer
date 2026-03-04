@@ -497,6 +497,18 @@ button.primary{
       padding: 16px;
       z-index: 999;
     }
+
+    .history-controls{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  flex-wrap:wrap;
+  margin-top:6px;
+}
+
+.history-controls select{
+  flex:1;
+}
     .modal{
       width: min(720px, 96vw);
       background: #0b1225;
@@ -737,11 +749,13 @@ Balance: +3 Blue Advantage
     <!-- History -->
     <div id="historyPage" style="display:none;">
       <h3>History</h3>
-      <select id="historyFilter"></select>
-      <div style="margin-top:10px;">
-        <button id="clearHistoryBtn" class="danger">Clear History</button>
-      </div>
-      <div id="historyList" style="margin-top:15px;"></div>
+
+<div class="history-controls">
+  <select id="historyFilter"></select>
+  <button id="clearHistoryBtn" class="danger">Clear History</button>
+</div>
+
+<div id="historyList" style="margin-top:15px;"></div>
     </div>
   </div>
 
