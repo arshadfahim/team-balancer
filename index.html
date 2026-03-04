@@ -1523,9 +1523,9 @@ function renderHistory(){
   filtered.forEach(entry=>{
     const pc = inferPlayersCount(entry);
     const div = document.createElement("div");
-    div.className = "team-row";
-    div.style.background = "rgba(255,255,255,0.04)";
-    div.style.border = "1px solid rgba(255,255,255,0.08)";
+
+const diffClass = entry.diff >= 5 ? 5 : entry.diff;
+div.className = `team-row diff-${diffClass}`;
 div.innerHTML = `
   <div class="team-info">
     <strong>${entry.time}</strong> | Match Maker: <b>${entry.picker}</b> | Diff: ${entry.diff} | Players: ${pc}<br>
