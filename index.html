@@ -1612,7 +1612,10 @@ document.getElementById("genTab").addEventListener("click", ()=>{
   adminPage.style.display = "none";
   infoPage.style.display = "none";
 
-  resetGeneratedTeams();
+  // Reset Generator page completely
+  pickerSelect.selectedIndex = 0;   // reset Match Maker dropdown
+  renderAttendance(true);           // re-check all players
+  resetGeneratedTeams();            // clear generated matchups
 });
   
 document.getElementById("histTab").addEventListener("click", ()=>{
