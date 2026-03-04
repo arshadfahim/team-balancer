@@ -364,6 +364,36 @@ button.primary{
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.info-example{
+  display:flex;
+  gap:12px;
+  margin:12px 0;
+}
+
+.info-team{
+  flex:1;
+  padding:10px;
+  border-radius:8px;
+  font-weight:700;
+  text-align:center;
+}
+
+.info-blue{
+  background:#1d4ed8;
+  color:white;
+}
+
+.info-red{
+  background:#dc2626;
+  color:white;
+}
+
+.info-balance{
+  margin-top:6px;
+  font-weight:700;
+}
+    
   </style>
 </head>
 
@@ -423,7 +453,8 @@ button.primary{
 <p>Blue: 5 players<br>
 Red: 5 players</p>
 
-<p>All possible team combinations are generated and sorted by how close the total skill is between the two teams.</p>
+<p>All possible team combinations are generated and sorted by how close the total skill is between the two teams.  
+To keep the results manageable, only matchups with a skill difference of **0 to 4** are shown.</p>
 
 <p><b>Example result:</b></p>
 <p>Blue Skill: 27<br>
@@ -440,15 +471,33 @@ Red: 5 players</p>
 
 <p>Because Red has more players, only matchups where Blue has an advantage are shown.</p>
 
-<p>The allowed balance range is <b>0–4 advantage for Blue</b>.</p>
+<p>To keep the number of matchups manageable, only results with a skill difference of **0 to 4** are shown.
+
+When teams are uneven, the smaller team is assigned to **Blue**, so only matchups where **Blue has the advantage** are displayed.</p>
 
 <p>Red advantage combinations are hidden because Red already has more players.</p>
 
 <p><b>Example result:</b></p>
-<p>Blue Skill: 25<br>
-Red Skill: 22<br>
-Blue Advantage: +3</p>
 
+<div class="info-example">
+
+  <div class="info-team info-blue">
+    Blue Team<br>
+    4 Players<br>
+    Skill 25
+  </div>
+
+  <div class="info-team info-red">
+    Red Team<br>
+    5 Players<br>
+    Skill 22
+  </div>
+
+</div>
+
+<div class="info-balance">
+Balance: +3 Blue Advantage
+</div>
 </div>
 
     <!-- Admin -->
