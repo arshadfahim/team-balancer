@@ -1267,7 +1267,7 @@ function populateHistoryFilter(){
 
   const optAll = document.createElement("option");
   optAll.value = "all";
-  optAll.textContent = "All Pickers (Newest First)";
+  optAll.textContent = "All Match Makers (Newest First)";
   historyFilter.appendChild(optAll);
 
   const pickers = [...new Set(history.map(h => String(h.picker||"").trim()).filter(Boolean))]
@@ -1326,7 +1326,7 @@ function renderHistory(){
         <strong>${entry.time}</strong><br>
         Team Difference: ${entry.diff}<br>
         ${pc} Players<br>
-        Picker: ${entry.picker}<br>
+        Match Maker: ${entry.picker}<br>
         🔵 BLUE: ${(entry.blue||[]).join(", ")}<br>
         🔴 RED: ${(entry.red||[]).join(", ")}<br>
       </div>
