@@ -1612,8 +1612,10 @@ document.getElementById("genTab").addEventListener("click", ()=>{
   historyPage.style.display = "none";
   adminPage.style.display = "none";
   infoPage.style.display = "none";
-});
 
+  resetGeneratedTeams();
+});
+  
 document.getElementById("histTab").addEventListener("click", ()=>{
   generatorPage.style.display = "none";
   historyPage.style.display = "block";
