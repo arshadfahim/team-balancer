@@ -877,10 +877,11 @@ function dubaiTimeString(){
   const d = new Date();
 
   const datePart = d.toLocaleDateString("en-US", {
-    timeZone: "Asia/Dubai",
-    month: "short",
-    day: "numeric"
-  });
+  timeZone: "Asia/Dubai",
+  year: "numeric",
+  month: "short",
+  day: "numeric"
+});
 
   const timePart = d.toLocaleTimeString("en-US", {
     timeZone: "Asia/Dubai",
@@ -1826,6 +1827,7 @@ const playersFromCloud = data.players.map(r => ({
 time:
   new Date(Number(r[0])).toLocaleDateString("en-US", {
     timeZone:"Asia/Dubai",
+    year:"numeric",
     month:"short",
     day:"numeric"
   }) +
