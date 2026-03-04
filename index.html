@@ -1321,16 +1321,20 @@ function renderHistory(){
     div.className = "team-row";
     div.style.background = "rgba(255,255,255,0.04)";
     div.style.border = "1px solid rgba(255,255,255,0.08)";
-    div.innerHTML = `
-      <div class="team-info">
-        <strong>${entry.time}</strong><br>
-        Team Difference: ${entry.diff}<br>
-        ${pc} Players<br>
-        Match Maker: ${entry.picker}<br>
-        🔵 BLUE: ${(entry.blue||[]).join(", ")}<br>
-        🔴 RED: ${(entry.red||[]).join(", ")}<br>
-      </div>
-    `;
+div.innerHTML = `
+  <div class="team-info">
+    <strong>${entry.time}</strong><br>
+    <span style="opacity:0.8;">Match Maker:</span> <b>${entry.picker}</b><br>
+    <span style="opacity:0.8;">Players:</span> ${pc} | 
+    <span style="opacity:0.8;">Difference:</span> ${entry.diff}<br><br>
+
+    🔵 <b>Blue Team</b><br>
+    ${(entry.blue||[]).join(", ")}<br><br>
+
+    🔴 <b>Red Team</b><br>
+    ${(entry.red||[]).join(", ")}
+  </div>
+`;
     historyList.appendChild(div);
   });
 }
