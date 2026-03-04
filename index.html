@@ -89,6 +89,39 @@
       line-height: 1.45;
     }
 
+    /* Selected team columns */
+.selected-teams-grid{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap:20px;
+  justify-content:center;
+  align-items:start;
+  margin:10px auto;
+  max-width:500px;
+}
+
+.selected-team-col{
+  text-align:center;
+  font-weight:800;
+}
+
+.selected-team-title{
+  font-size:clamp(14px,2vw,16px);
+  margin-bottom:6px;
+}
+
+.selected-team-players{
+  font-size:clamp(13px,2vw,15px);
+  line-height:1.5;
+}
+
+.selected-footer{
+  text-align:center;
+  font-weight:800;
+  margin-top:8px;
+  font-size:clamp(13px,2vw,15px);
+}
+
     /* One-line team text with tap-to-expand */
     .team-line{
       display:block;
@@ -1129,18 +1162,37 @@ function showSelectedBanner(option){
   selectedTeamOptionCache = option;
   updatePickedByLine();
 
-  const blueNames = [...option.blue].sort().join(", ");
-  const redNames  = [...option.red].sort().join(", ");
+  const bluePlayers = [...option.blue].sort();
+  const redPlayers  = [...option.red].sort();
+
+  const blueHTML = bluePlayers.map(p => `<div>${p}</div>`).join("");
+  const redHTML  = redPlayers.map(p => `<div>${p}</div>`).join("");
 
   selectedTeamLines.innerHTML = `
-    <span class="team-line">🔵 BLUE TEAM (${option.skillBlue}): ${blueNames}</span>
-    <span class="team-line">🔴 RED TEAM (${option.skillRed}): ${redNames}</span>
-    <span class="team-line">Team Difference: ${option.diff}</span>
-    <span class="team-line">${option.playersCount} Players</span>
+    <div class="selected-teams-grid">
+
+      <div class="selected-team-col">
+        <div class="selected-team-title">🔵 BLUE (${option.skillBlue})</div>
+        <div class="selected-team-players">
+          ${blueHTML}
+        </div>
+      </div>
+
+      <div class="selected-team-col">
+        <div class="selected-team-title">🔴 RED (${option.skillRed})</div>
+        <div class="selected-team-players">
+          ${redHTML}
+        </div>
+      </div>
+
+    </div>
+
+    <div class="selected-footer">
+      Team Difference: ${option.diff} | ${option.playersCount} Players
+    </div>
   `;
 
   selectedTeamBanner.style.display = "block";
-  requestAnimationFrame(fitAndMarkAllTeamLines);
 }
 
 function renderOptions(groups){
