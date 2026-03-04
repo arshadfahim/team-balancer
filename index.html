@@ -569,7 +569,7 @@ Balance: +3 Blue Advantage
 
     <!-- History -->
     <div id="historyPage" style="display:none;">
-      <h3>History (Dubai Time)</h3>
+      <h3>History</h3>
       <select id="historyFilter"></select>
       <div style="margin-top:10px;">
         <button id="clearHistoryBtn" class="danger">Clear History</button>
@@ -753,9 +753,24 @@ let selectedTeamOptionCache = null;
    UTIL
 ========================= */
 function dubaiTimeString(){
-  return new Date().toLocaleString("en-US", { timeZone: "Asia/Dubai" });
-}
+  const d = new Date();
 
+  const datePart = d.toLocaleDateString("en-US", {
+    timeZone: "Asia/Dubai",
+    month: "short",
+    day: "numeric"
+  });
+
+  const timePart = d.toLocaleTimeString("en-US", {
+    timeZone: "Asia/Dubai",
+    hour: "numeric",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: true
+  });
+
+  return `${datePart} • ${timePart} GST`;
+}
 function getSelectedPlayers(){
   const selected = [];
   players.forEach((p,i)=>{
@@ -1661,7 +1676,23 @@ const playersFromCloud = data.players.map(r => ({
       diff: Number(r[4]),
       playersCount: Number(r[5]),
       teamKey: r[6],
-      time: new Date(Number(r[0])).toLocaleString("en-US",{ timeZone:"Asia/Dubai" })
+
+time:
+  new Date(Number(r[0])).toLocaleDateString("en-US", {
+    timeZone:"Asia/Dubai",
+    month:"short",
+    day:"numeric"
+  }) +
+  " • " +
+  new Date(Number(r[0])).toLocaleTimeString("en-US", {
+    timeZone:"Asia/Dubai",
+    hour:"numeric",
+    minute:"2-digit",
+    second:"2-digit",
+    hour12:true
+  }) +
+  " GST"
+      
     })).sort((a,b)=>b.timestamp-a.timestamp);
 
 // Normalize and compare players before overwriting
