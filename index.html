@@ -1486,17 +1486,26 @@ document.getElementById("genTab").addEventListener("click", ()=>{
   generatorPage.style.display = "block";
   historyPage.style.display = "none";
   adminPage.style.display = "none";
+  infoPage.style.display = "none";
 });
 
 document.getElementById("histTab").addEventListener("click", ()=>{
   generatorPage.style.display = "none";
   historyPage.style.display = "block";
   adminPage.style.display = "none";
+  infoPage.style.display = "none";
   populateHistoryFilter();
   historyFilter.value = "all";
   renderHistory();
 });
 
+  document.getElementById("infoTab").addEventListener("click", ()=>{
+  generatorPage.style.display = "none";
+  historyPage.style.display = "none";
+  adminPage.style.display = "none";
+  infoPage.style.display = "block";
+});
+  
 /* =========================
    INITIALIZE
 ========================= */
