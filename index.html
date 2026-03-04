@@ -750,6 +750,8 @@ let lastGeneratedGroups = null;  // groups[0..4] of options
 let selectedTeamKey = null;      // highlight + splash
 let selectedTeamOptionCache = null;
 
+let selectionProcessing = false;
+
 /* =========================
    UTIL
 ========================= */
@@ -956,6 +958,7 @@ function resetGeneratedTeams(){
   lastGeneratedGroups = null;
   selectedTeamKey = null;
   selectedTeamOptionCache = null;
+  
   clearSelectedBanner();
 
   // reset radios to all
@@ -1218,8 +1221,17 @@ btn.addEventListener("click", ()=>{
 }
 
 function onSelectOption(option){
+
+  if(selectionProcessing) return;
+
+  selectionProcessing = true;
+
   const picker = pickerSelect.value;
-  if(!requirePin(picker)) return;
+  if(!requirePin(picker)){
+    selectionProcessing = false;
+    return;
+  }
+
   selectedTeamKey = option.teamKey;
   showSelectedBanner(option);
   saveMatch(option);
@@ -1254,11 +1266,14 @@ fetch(GOOGLE_API_URL, {
   })
 })
 .then(() => {
+  .then(() => {
   showStatus("Team selection saved successfully.", "success");
+  selectionProcessing = false;
 })
 .catch(err => {
   console.warn("Cloud save failed:", err);
   showStatus("Unable to save team selection.", "error");
+  selectionProcessing = false;
 });
   
   if(historyPage.style.display !== "none"){
