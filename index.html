@@ -1221,7 +1221,7 @@ function onSelectOption(option){
 
 function saveMatch(option){
   
-  showStatus("Saving team selection...", "loading", true);
+showStatus("Processing team selection...", "loading", true);
   
   const picker = pickerSelect.value;
   const entry = {
@@ -1254,8 +1254,7 @@ fetch(GOOGLE_API_URL, {
   console.warn("Cloud save failed:", err);
   showStatus("Unable to save team selection.", "error");
 });
-  showStatus("Team selection saved successfully.", "success");
-
+  
   if(historyPage.style.display !== "none"){
     populateHistoryFilter();
     renderHistory();
