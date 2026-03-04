@@ -1189,9 +1189,15 @@ function renderOptions(groups){
       buttonArea.className = "button-area";
 
       const btn = document.createElement("button");
-      btn.className = "primary";
-      btn.textContent = "Select";
-      btn.addEventListener("click", ()=>onSelectOption(option));
+btn.className = "primary";
+btn.textContent = "Select";
+
+btn.addEventListener("click", ()=>{
+  if(btn.disabled) return;   // prevents double click
+  btn.disabled = true;
+  btn.textContent = "Processing...";
+  onSelectOption(option);
+});
 
       const count = document.createElement("div");
       count.className = "picked-count";
