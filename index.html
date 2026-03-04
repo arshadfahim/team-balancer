@@ -1214,9 +1214,19 @@ function renderOptions(groups){
 function onSelectOption(option){
   const picker = pickerSelect.value;
   if(!requirePin(picker)) return;
+
   selectedTeamKey = option.teamKey;
+
+  // show splash banner
   showSelectedBanner(option);
+
+  // save selection
   saveMatch(option);
+
+  // reset generator UI
+  resultDiv.innerHTML = "";
+  pickerSelect.selectedIndex = 0;
+  renderAttendance(true);
 }
 
 function saveMatch(option){
