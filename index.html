@@ -566,6 +566,7 @@ button.primary{
         <label id="label2"><input type="radio" name="diffFilter" value="2"> Difference 2</label>
         <label id="label3"><input type="radio" name="diffFilter" value="3"> Difference 3</label>
         <label id="label4"><input type="radio" name="diffFilter" value="4"> Difference 4</label>
+        <label id="label5"><input type="radio" name="diffFilter" value="5"> Difference 5+</label>  
         </div>
       </div>
 
@@ -1113,9 +1114,9 @@ function getSelectedDiff(){
 function updateRadioCounts(groups){
   if(!groups) return;
 
-  const counts = {0:0,1:0,2:0,3:0,4:0};
+  const counts = {0:0,1:0,2:0,3:0,4:0,5:0};
 
-  [0,1,2,3,4].forEach(d=>{
+  [0,1,2,3,4,5].forEach(d=>{
     if(!groups[d]) return;
     if(d === 0){
       counts[d] = groups[d].length;
@@ -1133,6 +1134,7 @@ function updateRadioCounts(groups){
     {id:"label2", text:` Difference 2 (${counts[2]})`},
     {id:"label3", text:` Difference 3 (${counts[3]})`},
     {id:"label4", text:` Difference 4 (${counts[4]})`},
+    {id:"label5", text:` Difference 5+ (${counts[5]})`},
   ];
 
   labels.forEach(item=>{
@@ -1147,7 +1149,7 @@ function updateRadioCounts(groups){
 }
 
 function updateDiffAvailability(groups){
-  [0,1,2,3,4].forEach(d=>{
+  [0,1,2,3,4,5].forEach(d=>{
     const radio = document.querySelector('input[name="diffFilter"][value="'+d+'"]');
     if(!radio) return;
     const label = radio.parentElement;
@@ -1183,7 +1185,7 @@ showStatus("Select the Match Maker before generating matchups.", "error");
   const half = Math.floor(playersCount / 2);
   const combos = combinations(selected, half);
 
-  const groups = {0:[],1:[],2:[],3:[],4:[]};
+  const groups = {0:[],1:[],2:[],3:[],4:[],5:[]};
   const seen = new Set();
 
   combos.forEach(teamA=>{
@@ -1210,15 +1212,24 @@ showStatus("Select the Match Maker before generating matchups.", "error");
     seen.add(key);
 
     const diff = Math.abs(skillBlue - skillRed);
-    if(diff <= 4){
-      groups[diff].push({
-        blue, red,
-        skillBlue, skillRed,
-        diff,
-        teamKey: key,
-        playersCount
-      });
-    }
+
+if(diff <= 4){
+  groups[diff].push({
+    blue, red,
+    skillBlue, skillRed,
+    diff,
+    teamKey: key,
+    playersCount
+  });
+}else{
+  groups[5].push({
+    blue, red,
+    skillBlue, skillRed,
+    diff,
+    teamKey: key,
+    playersCount
+  });
+}
   });
 
   lastGeneratedGroups = groups;
@@ -1287,7 +1298,7 @@ function renderOptions(groups){
   const selectedDiff = getSelectedDiff();
   const playersCount = updatePlayerCount();
 
-  [0,1,2,3,4].forEach(diff=>{
+  [0,1,2,3,4,5].forEach(diff=>{
     if(!groups[diff] || groups[diff].length === 0) return;
 
     if(selectedDiff !== "all" && Number(selectedDiff) !== diff) return;
