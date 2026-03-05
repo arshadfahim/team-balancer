@@ -1459,6 +1459,8 @@ function onSelectOption(option){
 
   // Reset generator immediately
   resultDiv.innerHTML = "";
+  lastGeneratedGroups = null;
+  
   pickerSelect.selectedIndex = 0;
   renderAttendance(true);
 
