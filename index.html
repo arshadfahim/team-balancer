@@ -1466,12 +1466,12 @@ function onSelectOption(option){
   // Save match first
   saveMatch(option);
 
+  // Show splash banner
+  showSelectedBanner(option, picker);
+  
   // THEN reset picker + players
   pickerSelect.selectedIndex = 0;
   renderAttendance(true);
-
-  // Show splash banner
-  showSelectedBanner(option, picker);
 
   selectedTeamBanner.scrollIntoView({
     behavior:"smooth",
