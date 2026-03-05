@@ -894,39 +894,26 @@ function requirePin(playerName){
   if(!player) return false;
 
   if(!player.pin){
+    const newPin = prompt(playerName + " - Set a 4 to 6 digit PIN:");
+    if(!/^[0-9]{4,6}$/.test(newPin)){
+      alert("PIN must be 4 to 6 digits only.");
+      return false;
+    }
+    player.pin = newPin;
+    localStorage.setItem("players", JSON.stringify(players));
 
-  const newPin = prompt(playerName + " - Set a 4 to 6 digit PIN:");
-
-  if(!/^[0-9]{4,6}$/.test(newPin)){
-    alert("PIN must be 4 to 6 digits only.");
-    return false;
-  }
-
-  player.pin = newPin;
-  localStorage.setItem("players", JSON.stringify(players));
-
-  lockScreen("Setting PIN...");
-
-  fetch(GOOGLE_API_URL, {
+fetch(GOOGLE_API_URL, {
   method: "POST",
+  mode: "no-cors",
   body: new URLSearchParams({
     action: "savePlayers",
     payload: JSON.stringify(players)
   })
-}).finally(()=>{
-
-  if(option){
-    sessionStorage.setItem("selectedTeamOption", JSON.stringify(option));
-    sessionStorage.setItem("selectedTeamPicker", playerName);
-  }
-
-  sessionStorage.setItem("pinSetSuccess","1");
-  location.reload();
-
 });
-
-  return false;
-}
+    
+    alert("PIN set successfully.");
+    return true;
+  }
 
   const entered = prompt(playerName + " - Enter your PIN:");
   if(entered === player.pin){
@@ -981,20 +968,6 @@ let isSelectingMatch = false;
 /* =========================
    UTIL
 ========================= */
-
-function lockScreen(message="Processing..."){
-  const lock = document.getElementById("screenLock");
-  if(!lock) return;
-  lock.textContent = message;
-  lock.style.display = "flex";
-}
-
-function unlockScreen(){
-  const lock = document.getElementById("screenLock");
-  if(!lock) return;
-  lock.style.display = "none";
-}
-  
 function dubaiTimeString(){
   const d = new Date();
 
@@ -2044,39 +2017,6 @@ if (playersChanged && lastGeneratedGroups) {
 
 setTimeout(() => cloudSync(true), 500);
 setInterval(() => cloudSync(false), 5000);
-
-if(sessionStorage.getItem("pinSetSuccess")){
-
-  showStatus("PIN set successfully.", "success");
-
-  const savedTeam = sessionStorage.getItem("selectedTeamOption");
-  const savedPicker = sessionStorage.getItem("selectedTeamPicker");
-
-  if(savedTeam && savedPicker){
-    const option = JSON.parse(savedTeam);
-    showSelectedBanner(option, savedPicker);
-  }
-
-  sessionStorage.removeItem("pinSetSuccess");
-  sessionStorage.removeItem("selectedTeamOption");
-  sessionStorage.removeItem("selectedTeamPicker");
-}
 </script>
-
-<div id="screenLock" style="
-position:fixed;
-inset:0;
-background:rgba(0,0,0,0.7);
-display:none;
-align-items:center;
-justify-content:center;
-z-index:9999;
-color:white;
-font-size:22px;
-font-weight:900;
-">
-Setting PIN...
-</div>
-
 </body>
 </html>
