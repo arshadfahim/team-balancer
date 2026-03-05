@@ -1461,13 +1461,14 @@ function onSelectOption(option){
   resultDiv.innerHTML = "";
   lastGeneratedGroups = null;
   
-  pickerSelect.selectedIndex = 0;
-  renderAttendance(true);
-
   selectedTeamKey = option.teamKey;
 
-  // Save match
+  // Save match first
   saveMatch(option);
+
+  // THEN reset picker + players
+  pickerSelect.selectedIndex = 0;
+  renderAttendance(true);
 
   // Show splash banner
   showSelectedBanner(option);
