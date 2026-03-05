@@ -889,7 +889,7 @@ let adminDirty = false;
 /* =========================
    PIN STORAGE (4-6 DIGITS)
 ========================= */
-function requirePin(playerName){
+async function requirePin(playerName){
   const player = players.find(p => p.name === playerName);
   if(!player) return false;
 
@@ -902,9 +902,8 @@ function requirePin(playerName){
     player.pin = newPin;
     localStorage.setItem("players", JSON.stringify(players));
 
-fetch(GOOGLE_API_URL, {
+await fetch(GOOGLE_API_URL, {
   method: "POST",
-  mode: "no-cors",
   body: new URLSearchParams({
     action: "savePlayers",
     payload: JSON.stringify(players)
@@ -1456,14 +1455,14 @@ function renderOptions(groups){
   requestAnimationFrame(fitAndMarkAllTeamLines);
 }
 
-function onSelectOption(option){
+async function onSelectOption(option){
 
   isSelectingMatch = true;
   
   const picker = pickerSelect.value;
 
   // Verify or create PIN first
-  if(!requirePin(picker)) return;
+  if(!(await requirePin(picker))) return;
 
   // Reset generator immediately
 resultDiv.innerHTML = "";
