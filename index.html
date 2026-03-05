@@ -1470,7 +1470,11 @@ selectedTeamKey = option.teamKey;
 
 // Reset picker + players FIRST
 pickerSelect.selectedIndex = 0;
-renderAttendance(true);
+  
+document.querySelectorAll("#attendance input[type='checkbox']").forEach(cb=>{
+  cb.checked = true;
+});
+updatePlayerCount();
 
 // Save match
 saveMatch(option);
