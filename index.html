@@ -415,7 +415,19 @@ button.danger{
     .diff-4.selected-option { box-shadow: 0 0 14px #9a3412; }
     .diff-5.selected-option { box-shadow: 0 0 14px #7f1d1d; }
     
-    .team-info{ width: 100%; min-width: 0; } /* SAFE: prevents overflow in flex */
+    .team-info{
+      width: 100%;
+      min-width: 0;
+    } /* SAFE: prevents overflow in flex */
+    
+    @media (max-width: 600px){
+
+      #historyList .team-info strong{
+        display:block;
+        margin-bottom:2px;
+      }
+
+}
     .button-area{
       min-width: 120px;
       display:flex;
