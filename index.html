@@ -962,6 +962,7 @@ const diffRadios = Array.from(document.querySelectorAll('input[name="diffFilter"
 let lastGeneratedGroups = null;  // groups[0..4] of options
 let selectedTeamKey = null;      // highlight + splash
 let selectedTeamOptionCache = null;
+let isRenderingAttendance = false;
 
 /* =========================
    UTIL
@@ -1119,6 +1120,7 @@ function renderPicker(){
 }
 
 function renderAttendance(resetAll = false){
+  isRenderingAttendance = true;
   attendanceDiv.innerHTML = "";
   players.forEach((p,i)=>{
     const label = document.createElement("label");
@@ -1135,9 +1137,11 @@ if (resetAll) {
 }
 
     cb.addEventListener("change", ()=>{
-      updatePlayerCount();
-      resetGeneratedTeams(); // must reset generated teams if attendance changes
-    });
+  updatePlayerCount();
+  if(!isRenderingAttendance){
+    resetGeneratedTeams();
+  }
+});
 
     const text = document.createElement("span");
     text.textContent = `${p.name} (${p.skill})`;
@@ -1147,6 +1151,7 @@ if (resetAll) {
     attendanceDiv.appendChild(label);
   });
   updatePlayerCount();
+  isRenderingAttendance = false;
 }
 
 /* =========================
