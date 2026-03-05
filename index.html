@@ -1430,9 +1430,9 @@ function onSelectOption(option){
   // Verify or create PIN first
   if(!requirePin(picker)) return;
 
-  // Reset generator immediately
-resultDiv.innerHTML = "";
-lastGeneratedGroups = null;
+// KEEP generator on screen (do not clear results)
+// resultDiv.innerHTML = "";
+// lastGeneratedGroups = null;
 
 selectedTeamKey = option.teamKey;
 
