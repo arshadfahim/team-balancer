@@ -1453,14 +1453,19 @@ saveMatch(option);
 // Show splash banner
 showSelectedBanner(option, picker);
 
-  selectedTeamBanner.scrollIntoView({
+// Re-render generator so teams stay visible
+if(lastGeneratedGroups){
+  renderOptions(lastGeneratedGroups);
+}
+
+selectedTeamBanner.scrollIntoView({
     behavior:"smooth",
     block:"start"
   });
 
-  setTimeout(()=>{
-    isSelectingMatch = false;
-  },1500);
+setTimeout(()=>{
+  isSelectingMatch = false;
+},1500);
 
 }
 
