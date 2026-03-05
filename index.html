@@ -1439,13 +1439,13 @@ selectedTeamKey = option.teamKey;
 // Save match BEFORE resetting picker
 saveMatch(option);
 
-// Reset picker + players
-pickerSelect.selectedIndex = 0;
+// Keep picker and player selection so teams stay visible
+// pickerSelect.selectedIndex = 0;
 
-document.querySelectorAll("#attendance input[type='checkbox']").forEach(cb=>{
-  cb.checked = true;
-});
-updatePlayerCount();
+// document.querySelectorAll("#attendance input[type='checkbox']").forEach(cb=>{
+//   cb.checked = true;
+// });
+// updatePlayerCount();
 
 // Show splash banner
 showSelectedBanner(option, picker);
