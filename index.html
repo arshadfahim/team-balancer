@@ -229,12 +229,13 @@ h2, h3{
 
     /* Today's players */
     .player-grid{
-      display:grid;
-      grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
-      gap: 10px;
-      margin-top: 10px;
-      width:100%;
-    }
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 170px));
+  justify-content:center;
+  gap:10px;
+  margin-top:10px;
+  width:100%;
+}
     .player-grid label{
       display:flex;
       gap:10px;
