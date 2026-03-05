@@ -908,17 +908,22 @@ function requirePin(playerName){
   lockScreen("Setting PIN...");
 
   fetch(GOOGLE_API_URL, {
-    method: "POST",
-    body: new URLSearchParams({
-      action: "savePlayers",
-      payload: JSON.stringify(players)
-    })
-  }).finally(()=>{
+  method: "POST",
+  body: new URLSearchParams({
+    action: "savePlayers",
+    payload: JSON.stringify(players)
+  })
+}).finally(()=>{
 
-    sessionStorage.setItem("pinSetSuccess","1");
-    location.reload();
+  if(option){
+    sessionStorage.setItem("selectedTeamOption", JSON.stringify(option));
+    sessionStorage.setItem("selectedTeamPicker", playerName);
+  }
 
-  });
+  sessionStorage.setItem("pinSetSuccess","1");
+  location.reload();
+
+});
 
   return false;
 }
@@ -2041,8 +2046,20 @@ setTimeout(() => cloudSync(true), 500);
 setInterval(() => cloudSync(false), 5000);
 
 if(sessionStorage.getItem("pinSetSuccess")){
+
   showStatus("PIN set successfully.", "success");
+
+  const savedTeam = sessionStorage.getItem("selectedTeamOption");
+  const savedPicker = sessionStorage.getItem("selectedTeamPicker");
+
+  if(savedTeam && savedPicker){
+    const option = JSON.parse(savedTeam);
+    showSelectedBanner(option, savedPicker);
+  }
+
   sessionStorage.removeItem("pinSetSuccess");
+  sessionStorage.removeItem("selectedTeamOption");
+  sessionStorage.removeItem("selectedTeamPicker");
 }
 </script>
 
