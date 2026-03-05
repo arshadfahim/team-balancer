@@ -1472,6 +1472,14 @@ const selectedRow = [...document.querySelectorAll(".team-row")].find(row=>{
 
 if(selectedRow){
   selectedRow.classList.add("selected-option");
+
+  const buttonArea = selectedRow.querySelector(".button-area");
+  if(buttonArea){
+    const badge = document.createElement("div");
+    badge.className = "selected-badge";
+    badge.textContent = "✓ SELECTED";
+    buttonArea.prepend(badge);
+  }
 }
 
 // Save match BEFORE resetting picker
