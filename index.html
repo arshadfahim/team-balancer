@@ -963,6 +963,7 @@ let lastGeneratedGroups = null;  // groups[0..4] of options
 let selectedTeamKey = null;      // highlight + splash
 let selectedTeamOptionCache = null;
 let isRenderingAttendance = false;
+let isSelectingMatch = false;
 
 /* =========================
    UTIL
@@ -1457,6 +1458,8 @@ function renderOptions(groups){
 
 function onSelectOption(option){
 
+  isSelectingMatch = true;
+  
   const picker = pickerSelect.value;
 
   // Verify or create PIN first
@@ -1486,6 +1489,10 @@ showSelectedBanner(option, picker);
     behavior:"smooth",
     block:"start"
   });
+
+  setTimeout(()=>{
+    isSelectingMatch = false;
+  },1500);
 
 }
 
@@ -1972,7 +1979,7 @@ const normalizedLocal = normalize(players);
 const playersChanged =
   JSON.stringify(normalizedCloud) !== JSON.stringify(normalizedLocal);
 
-if (playersChanged && !isAdminEditing) {
+if (playersChanged && !isAdminEditing && !isSelectingMatch) {
   localStorage.setItem("players", JSON.stringify(normalizedCloud));
   players = normalizedCloud;
 
