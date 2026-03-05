@@ -1895,6 +1895,9 @@ updateDiffAvailability({0:[],1:[],2:[],3:[],4:[]});
 const GOOGLE_API_URL = "https://script.google.com/macros/s/AKfycbyBG8JeymAMrNj_x1wMyWl3sEn-0_G7P7PsHUtpNoLNA0adxpajNIFwF9RvXGLml3O5FA/exec";
 
 async function cloudSync(force=false) {
+
+  if(isSelectingMatch) return;
+  
   try {
     const res = await fetch(GOOGLE_API_URL + "?action=getData&_=" + Date.now());
     if (!res.ok) return;
