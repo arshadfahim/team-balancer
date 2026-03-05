@@ -474,6 +474,25 @@ button.danger{
 #historyList .diff-4 { border-left-color:#9a3412; }
 #historyList .diff-5 { border-left-color:#7f1d1d; }
 
+/* Mobile history layout */
+@media (max-width:600px){
+
+  .history-meta{
+    display:block;
+    margin-top:2px;
+  }
+
+  .history-sep{
+    display:none;
+  }
+
+  .history-blue,
+  .history-red{
+    display:block;
+  }
+
+}
+
     /* Difference radio colors */
 
 #labelAll { background:#111827; color:white; }
@@ -1553,8 +1572,11 @@ const diffClass = entry.diff >= 5 ? 5 : entry.diff;
 div.className = `team-row diff-${diffClass}`;
 div.innerHTML = `
   <div class="team-info">
-    <strong>${entry.time}</strong> | Match Maker: <b>${entry.picker}</b> | Diff: ${entry.diff} | Players: ${pc}<br>
-    🔵 ${(entry.blue||[]).join(", ")}  |  🔴 ${(entry.red||[]).join(", ")}
+    <strong>${entry.time}</strong>
+    <span class="history-meta"> | Match Maker: <b>${entry.picker}</b> | Diff: ${entry.diff} | Players: ${pc}</span><br>
+    <span class="history-blue">🔵 ${(entry.blue||[]).join(", ")}</span>
+    <span class="history-sep"> | </span>
+    <span class="history-red">🔴 ${(entry.red||[]).join(", ")}</span>
   </div>
 `;
     historyList.appendChild(div);
