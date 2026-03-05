@@ -664,113 +664,34 @@ button.danger{
       <div id="result"></div>
     </div>
 
-    <div id="infoPage" style="display:none; max-width:800px; margin:auto; line-height:1.6;">
+<div id="infoPage" style="display:none; max-width:700px; margin:auto; line-height:1.6; text-align:center;">
 
-<h2>How Matchups Are Generated</h2>
+<h2>Blue Advantage</h2>
 
 <p>
-The system generates every possible team combination using the selected players. 
-For each matchup, the total skill of both teams is calculated and compared.
+Blue Advantage only exists in <b>BLITZ</b> when teams have an <b>uneven number of players</b>.
 </p>
 
 <p>
-To keep the list easy to review, only matchups where the skill difference is between <b>0 and 4</b> are shown. 
-This keeps the results focused on balanced and competitive games.
-</p>
-      
-<h2>Even Number of Players</h2>
-
-<p>
-When the number of players are even, teams are split equally.
+In BLITZ, when a team is defending, <b>each player has 5 lives</b>. If one team has fewer players, that team also has fewer total lives, which can create an unfair disadvantage.
 </p>
 
 <p>
-Example with <b>10 players</b>:
+To help balance the match, the team with fewer players is always assigned to <b>Blue Team</b>. This team may receive a small skill advantage so it can better compete despite having fewer players and fewer total lives.
 </p>
 
 <p>
-Blue Team: 5 players<br>
-Red Team: 5 players
+Because of this rule, the generator only shows matchups where <b>Blue Team has the advantage</b>. Matchups where <b>Red Team would have the advantage are excluded</b>, since Red already has more players and showing those combinations would defeat the purpose of balancing the teams.
 </p>
 
 <p>
-The system evaluates every possible team combination and ranks them by how close the total skill is between the two teams.
+Blue Advantage is only applied when using the <b>Difference 1 or higher</b> filter. Selecting <b>All Options</b> will display every possible matchup without applying this balancing rule.
 </p>
 
 <p>
-Example result:
+The goal is to keep matches <b>competitive, fair, and balanced</b> even when teams do not have the same number of players.
 </p>
 
-<p>
-Blue Skill: 27<br>
-Red Skill: 27<br>
-Difference: 0 (Perfect Balance)
-</p>
-
-<p>
-Multiple balanced matchups may be shown so the <b>Match Maker</b> can choose the one they prefer.
-</p>
-      
-<h2>Uneven Number of Players</h2>
-
-<p>
-When the number of players are uneven, the smaller team is automatically assigned to <b>Blue</b>.
-</p>
-
-<p>
-Example with <b>9 players</b>:
-</p>
-
-<p>
-Blue Team: 4 players<br>
-Red Team: 5 players
-</p>
-
-<p>
-Because Red already has more players, only matchups where <b>Blue has a skill advantage</b> are shown.
-</p>
-
-<p>
-This prevents Red from having both more players and higher total skill.
-</p>
-      
-<h2>Why Blue Advantage Exists</h2>
-      
-<p>
-This rule is especially useful in the <b>BLITZ</b> game mode.
-</p>
-
-<p>
-In BLITZ, each defending player only has <b>5 lives</b>. 
-A team with fewer players therefore has fewer total lives available.
-</p>
-
-<p>
-To help balance this disadvantage, the smaller Blue team may receive a small skill advantage. 
-This helps keep matches competitive even when the teams have different player counts.
-</p>
-      
-<h2>Example result:</h2>
-
-<div class="info-example">
-
-  <div class="info-team info-blue">
-    Blue Team<br>
-    4 Players<br>
-    Skill 25
-  </div>
-
-  <div class="info-team info-red">
-    Red Team<br>
-    5 Players<br>
-    Skill 22
-  </div>
-
-</div>
-
-<div class="info-balance">
-Balance: +3 Blue Advantage
-</div>
 </div>
 
     <!-- Admin -->
