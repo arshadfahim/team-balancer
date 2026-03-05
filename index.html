@@ -471,6 +471,20 @@ button.danger{
   border-radius:8px;
 }
 
+.controls input[type="radio"]{
+  display:none;
+}
+
+.controls label{
+  cursor:pointer;
+  transition: all .15s ease;
+}
+
+.controls input[type="radio"]:checked + span{
+  outline:2px solid rgba(255,255,255,0.9);
+  outline-offset: 2px;
+}
+
     /* History */
     #historyFilter{
   padding: 0 44px 0 12px;
@@ -633,13 +647,13 @@ button.danger{
         
 
         <div class="radio-row">
-        <label id="labelAll"><input type="radio" name="diffFilter" value="all" checked> All Options</label>
-        <label id="label0"><input type="radio" name="diffFilter" value="0"> Difference 0</label>
-        <label id="label1"><input type="radio" name="diffFilter" value="1"> Difference 1</label>
-        <label id="label2"><input type="radio" name="diffFilter" value="2"> Difference 2</label>
-        <label id="label3"><input type="radio" name="diffFilter" value="3"> Difference 3</label>
-        <label id="label4"><input type="radio" name="diffFilter" value="4"> Difference 4</label>
-        <label id="label5"><input type="radio" name="diffFilter" value="5"> Difference 5+</label>  
+<label id="labelAll"><input type="radio" name="diffFilter" value="all" checked><span>All Options</span></label>
+<label id="label0"><input type="radio" name="diffFilter" value="0"><span>Difference 0</span></label>
+<label id="label1"><input type="radio" name="diffFilter" value="1"><span>Difference 1</span></label>
+<label id="label2"><input type="radio" name="diffFilter" value="2"><span>Difference 2</span></label>
+<label id="label3"><input type="radio" name="diffFilter" value="3"><span>Difference 3</span></label>
+<label id="label4"><input type="radio" name="diffFilter" value="4"><span>Difference 4</span></label>
+<label id="label5"><input type="radio" name="diffFilter" value="5"><span>Difference 5+</span></label>
         </div>
       </div>
 
@@ -1216,10 +1230,9 @@ function updateRadioCounts(groups){
     const label = document.getElementById(item.id);
     if(!label) return;
 
-    const input = label.querySelector("input");
-    label.innerHTML = "";
-    label.appendChild(input);
-    label.appendChild(document.createTextNode(item.text));
+const input = label.querySelector("input");
+const span = label.querySelector("span");
+if(span) span.textContent = item.text;
   });
 }
 
