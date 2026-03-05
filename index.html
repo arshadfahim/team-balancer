@@ -1348,9 +1348,9 @@ if(diff <= 4){
 /* =========================
    RENDER OPTIONS + SELECT + COUNTERS
 ========================= */
-function showSelectedBanner(option){
+function showSelectedBanner(option, picker){
   selectedTeamOptionCache = option;
-  updatePickedByLine();
+  selectedPickedBy.innerHTML = `Match Maker: <strong>${picker}</strong>`;
 
   const bluePlayers = [...option.blue].sort();
   const redPlayers  = [...option.red].sort();
@@ -1471,7 +1471,7 @@ function onSelectOption(option){
   renderAttendance(true);
 
   // Show splash banner
-  showSelectedBanner(option);
+  showSelectedBanner(option, picker);
 
   selectedTeamBanner.scrollIntoView({
     behavior:"smooth",
