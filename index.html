@@ -1979,12 +1979,21 @@ const normalizedLocal = normalize(players);
 const playersChanged =
   JSON.stringify(normalizedCloud) !== JSON.stringify(normalizedLocal);
 
-if (playersChanged && !isAdminEditing && !isSelectingMatch) {
+if (playersChanged && !isAdminEditing) {
+
+  const namesChanged =
+    JSON.stringify(normalizedCloud.map(p=>p.name)) !==
+    JSON.stringify(normalizedLocal.map(p=>p.name));
+
   localStorage.setItem("players", JSON.stringify(normalizedCloud));
   players = normalizedCloud;
 
   renderPicker();
-  renderAttendance(false);
+
+  // Only rebuild attendance if actual player list changed
+  if(namesChanged){
+    renderAttendance(false);
+  }
 }
     
     localStorage.setItem("matchHistory", JSON.stringify(historyFromCloud));
