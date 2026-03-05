@@ -1516,17 +1516,7 @@ fetch(GOOGLE_API_URL, {
   if(historyPage.style.display !== "none"){
     populateHistoryFilter();
     renderHistory();
-  }
-
-  const keepDiff = getSelectedDiff();
-  generateTeams();
-  if(keepDiff !== "all"){
-    const r = document.querySelector('input[name="diffFilter"][value="'+keepDiff+'"]');
-    if(r && !r.disabled) r.checked = true;
-  }
-  if(lastGeneratedGroups) renderOptions(lastGeneratedGroups);
-
-  if(selectedTeamOptionCache) showSelectedBanner(selectedTeamOptionCache);
+}
 }
 
 /* =========================
