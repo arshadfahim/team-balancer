@@ -1459,6 +1459,18 @@ if(selectedRow){
 // Save match BEFORE resetting picker
 saveMatch(option);
 
+// Update the counter for this team
+const rows = document.querySelectorAll(".team-row");
+rows.forEach(row=>{
+  if(row.classList.contains("selected-option")){
+    const counter = row.querySelector(".picked-count");
+    if(counter){
+      const current = parseInt(counter.textContent.replace(/\D/g,'')) || 0;
+      counter.textContent = "Times Selected: " + (current + 1);
+    }
+  }
+});
+
 // Keep picker and player selection so teams stay visible
 // pickerSelect.selectedIndex = 0;
 
