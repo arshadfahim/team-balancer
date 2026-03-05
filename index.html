@@ -1454,26 +1454,27 @@ function onSelectOption(option){
 
   const picker = pickerSelect.value;
 
-  // FIRST verify the PIN
+  // Verify or create PIN first
   if(!requirePin(picker)) return;
 
-  selectedTeamKey = option.teamKey;
-
-  // Save first
-  saveMatch(option);
-
-  // Reset generator UI
+  // Reset generator immediately
   resultDiv.innerHTML = "";
   pickerSelect.selectedIndex = 0;
   renderAttendance(true);
 
-  // THEN show splash
+  selectedTeamKey = option.teamKey;
+
+  // Save match
+  saveMatch(option);
+
+  // Show splash banner
   showSelectedBanner(option);
 
   selectedTeamBanner.scrollIntoView({
     behavior:"smooth",
     block:"start"
   });
+
 }
 
 function saveMatch(option){
