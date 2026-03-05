@@ -1451,24 +1451,29 @@ function renderOptions(groups){
 }
 
 function onSelectOption(option){
+
   const picker = pickerSelect.value;
+
+  // FIRST verify the PIN
   if(!requirePin(picker)) return;
 
   selectedTeamKey = option.teamKey;
 
-  // show splash banner
-showSelectedBanner(option);
+  // Save first
+  saveMatch(option);
 
-// scroll to banner
-selectedTeamBanner.scrollIntoView({ behavior: "smooth", block: "start" });
-
-// save selection
-saveMatch(option);
-
-  // reset generator UI
+  // Reset generator UI
   resultDiv.innerHTML = "";
   pickerSelect.selectedIndex = 0;
   renderAttendance(true);
+
+  // THEN show splash
+  showSelectedBanner(option);
+
+  selectedTeamBanner.scrollIntoView({
+    behavior:"smooth",
+    block:"start"
+  });
 }
 
 function saveMatch(option){
