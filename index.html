@@ -1458,20 +1458,20 @@ function onSelectOption(option){
   if(!requirePin(picker)) return;
 
   // Reset generator immediately
-  resultDiv.innerHTML = "";
-  lastGeneratedGroups = null;
-  
-  selectedTeamKey = option.teamKey;
+resultDiv.innerHTML = "";
+lastGeneratedGroups = null;
 
-  // Save match first
-  saveMatch(option);
+selectedTeamKey = option.teamKey;
 
-  // Show splash banner
-  showSelectedBanner(option, picker);
-  
-  // THEN reset picker + players
-  pickerSelect.selectedIndex = 0;
-  renderAttendance(true);
+// Reset picker + players FIRST
+pickerSelect.selectedIndex = 0;
+renderAttendance(true);
+
+// Save match
+saveMatch(option);
+
+// Show splash banner
+showSelectedBanner(option, picker);
 
   selectedTeamBanner.scrollIntoView({
     behavior:"smooth",
