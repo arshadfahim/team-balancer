@@ -1471,16 +1471,16 @@ lastGeneratedGroups = null;
 
 selectedTeamKey = option.teamKey;
 
-// Reset picker + players FIRST
+// Save match BEFORE resetting picker
+saveMatch(option);
+
+// Reset picker + players
 pickerSelect.selectedIndex = 0;
-  
+
 document.querySelectorAll("#attendance input[type='checkbox']").forEach(cb=>{
   cb.checked = true;
 });
 updatePlayerCount();
-
-// Save match
-saveMatch(option);
 
 // Show splash banner
 showSelectedBanner(option, picker);
