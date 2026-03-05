@@ -229,12 +229,11 @@ h2, h3{
 
     /* Today's players */
     .player-grid{
-  display:grid;
-  grid-template-columns: repeat(auto-fit, 170px);
+  display:flex;
+  flex-wrap:wrap;
   justify-content:center;
   gap:10px;
   margin-top:10px;
-  width:100%;
 }
     .player-grid label{
       display:flex;
@@ -249,6 +248,7 @@ h2, h3{
       font-weight: 700;
       user-select:none;
       min-width:0; /* SAFE */
+      width:170px;
     }
     .player-grid input[type="checkbox"]{
       width: 18px;
