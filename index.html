@@ -1443,6 +1443,19 @@ function onSelectOption(option){
 
 selectedTeamKey = option.teamKey;
 
+// Highlight the selected team
+document.querySelectorAll(".team-row").forEach(row=>{
+  row.classList.remove("selected-option");
+});
+
+const selectedRow = [...document.querySelectorAll(".team-row")].find(row=>{
+  return row.innerText.includes(option.blue[0]) && row.innerText.includes(option.red[0]);
+});
+
+if(selectedRow){
+  selectedRow.classList.add("selected-option");
+}
+
 // Save match BEFORE resetting picker
 saveMatch(option);
 
