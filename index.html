@@ -1233,7 +1233,10 @@ function updateDiffAvailability(groups){
 document.getElementById("generateBtn").addEventListener("click", generateTeams);
 
 function generateTeams(){
-  const picker = pickerSelect.value;
+
+    if(isSelectingMatch) return;
+
+    const picker = pickerSelect.value;
   if(!picker){
 showStatus("Select the Match Maker before generating matchups.", "error");
     return;
