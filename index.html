@@ -1137,6 +1137,9 @@ function updatePickedByLine(){
 }
 
 function resetGeneratedTeams(){
+
+  if(isSelectingMatch) return;
+  
   resultDiv.innerHTML = "";
   lastGeneratedGroups = null;
   selectedTeamKey = null;
