@@ -1182,18 +1182,10 @@ clearSelectedBanner();
 
 /* When picker changes: reset page (but keep attendance selection) */
 pickerSelect.addEventListener("change", ()=>{
-
   selectedTeamKey = null;
-
-  document.querySelectorAll(".team-row button.primary").forEach(btn=>{
-    btn.classList.remove("selected");
-    btn.textContent = "Select";
-    btn.disabled = false;
-  });
-
-  document.querySelectorAll(".team-row").forEach(row=>{
-    row.classList.remove("selected-option");
-  });
+  resetGeneratedTeams();
+  renderAttendance(true);
+});
 
   resetGeneratedTeams();
   renderAttendance(true);
