@@ -2031,6 +2031,12 @@ const restoredOption = {
 };
 
 showSelectedBanner(restoredOption, currentMatchup.picker);
+
+const generatorContent = document.getElementById("generatorContent");
+
+if(!sameDevice && generatorContent){
+  generatorContent.style.display = "none";
+}
     
   }catch(e){
 
