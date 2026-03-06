@@ -1512,7 +1512,12 @@ if(selectedTeamKey && option.teamKey === selectedTeamKey){
       btn.textContent = "Select";
       btn.addEventListener("click", ()=>onSelectOption(option));
 
-if(selectedTeamKey && option.teamKey === selectedTeamKey){
+if(
+  selectedTeamKey &&
+  option.teamKey === selectedTeamKey &&
+  currentMatchup &&
+  currentMatchup.picker === pickerSelect.value
+){
   btn.classList.add("selected");
   btn.textContent = "✓ SELECTED";
   btn.disabled = true;
