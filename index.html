@@ -2017,7 +2017,7 @@ function restoreCurrentMatchup(){
     currentMatchup = JSON.parse(savedMatchup);
 
     const deviceMatchMaker = localStorage.getItem("lastMatchMakerDevice");
-    const sameDevice = deviceMatchMaker === currentMatchup.picker;
+    const sameDevice = deviceMatchMaker && deviceMatchMaker === currentMatchup.picker;
 
     selectedTeamKey = currentMatchup.teamKey;
 
