@@ -2235,7 +2235,13 @@ const deviceMatch = localStorage.getItem("lastMatchDeviceId");
 const sameDevice = deviceMatch && deviceMatch === deviceId;
 
 if(!sameDevice){
-  document.getElementById("generatorContent").style.display = "block";
+
+  document.getElementById("pickerSelect").style.display = "none";
+  document.getElementById("attendance").style.display = "none";
+  document.getElementById("generateBtn").style.display = "none";
+  document.getElementById("result").style.display = "none";
+
+}
 }
 
   }
