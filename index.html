@@ -2069,6 +2069,10 @@ const playersFromCloud = data.players.map(r => ({
       picker: r[1],
       blue: String(r[2] || "").split(",").map(s=>s.trim()).filter(Boolean),
       red: String(r[3] || "").split(",").map(s=>s.trim()).filter(Boolean),
+
+      skillBlue: 0,
+      skillRed: 0,
+      
       diff: Number(r[4]),
       playersCount: Number(r[5]),
       teamKey: r[6],
