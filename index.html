@@ -1541,6 +1541,9 @@ if(selectedRow){
 }
 
 // Save match BEFORE resetting picker
+
+localStorage.setItem("lastMatchMakerDevice", picker);
+  
 saveMatch(option);
 
 // Update the counter for this team
