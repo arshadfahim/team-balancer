@@ -2231,8 +2231,18 @@ if(!lastGeneratedGroups){
 
   showSelectedBanner(restoredOption, latest.picker);
 
-  const deviceMatch = localStorage.getItem("lastMatchDeviceId");
-  const sameDevice = deviceMatch && deviceMatch === deviceId;
+  const generatorContent = document.getElementById("generatorContent");
+
+const deviceMatch = localStorage.getItem("lastMatchDeviceId");
+const sameDevice = deviceMatch && deviceMatch === deviceId;
+
+if(generatorContent){
+  if(sameDevice){
+    generatorContent.style.display = "block";
+  }else{
+    generatorContent.style.display = "none";
+  }
+}
 
   }
     
