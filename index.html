@@ -2238,10 +2238,25 @@ if(!lastGeneratedGroups){
 
   showSelectedBanner(restoredOption, latest.picker);
 
-  const sameDevice = currentMatchup && currentMatchup.deviceId === deviceId;
+const generatorContent = document.getElementById("generatorContent");
 
+const sameDevice =
+  latest.deviceId && latest.deviceId === deviceId;
+
+if(generatorContent){
+
+  if(!latest.deviceId){
+    generatorContent.style.display = "block";
   }
-    
+  else if(sameDevice){
+    generatorContent.style.display = "block";
+  }
+  else{
+    generatorContent.style.display = "none";
+  }
+
+}  
+
 if (playersChanged && lastGeneratedGroups) {
   renderOptions(lastGeneratedGroups);
   updateRadioCounts(lastGeneratedGroups);
