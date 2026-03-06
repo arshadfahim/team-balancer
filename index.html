@@ -1184,11 +1184,23 @@ document.querySelectorAll('input[name="diffFilter"]').forEach(r=>{
 /* When picker changes: reset page (but keep attendance selection) */
 pickerSelect.addEventListener("change", ()=>{
 
-  // Reset selected team state
+  // Reset selected team
   selectedTeamKey = null;
 
-  // Reset generator completely
-  resetGeneratedTeams();
+  // Clear generated teams
+  resultDiv.innerHTML = "";
+  lastGeneratedGroups = null;
+
+  // Clear selected banner
+  clearSelectedBanner();
+
+  // Reset radios
+  const allRadio = document.querySelector('input[name="diffFilter"][value="all"]');
+  if(allRadio) allRadio.checked = true;
+
+  document.querySelectorAll('input[name="diffFilter"]').forEach(r=>{
+    r.disabled = false;
+  });
 
   // Reset player attendance
   renderAttendance(true);
