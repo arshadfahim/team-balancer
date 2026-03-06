@@ -960,6 +960,9 @@ let isSelectingMatch = false;
 
 let currentMatchup = null;
 
+const deviceId = localStorage.getItem("deviceId") || crypto.randomUUID();
+localStorage.setItem("deviceId", deviceId);
+
 /* =========================
    UTIL
 ========================= */
@@ -1574,7 +1577,7 @@ if(selectedRow){
 
 // Save match BEFORE resetting picker
 
-localStorage.setItem("lastMatchMakerDevice", picker);
+localStorage.setItem("lastMatchDeviceId", deviceId);
   
 saveMatch(option);
 
@@ -2043,8 +2046,8 @@ function restoreCurrentMatchup(){
 
     currentMatchup = JSON.parse(savedMatchup);
 
-    const deviceMatchMaker = localStorage.getItem("lastMatchMakerDevice");
-    const sameDevice = deviceMatchMaker && deviceMatchMaker === currentMatchup.picker;
+    const deviceMatch = localStorage.getItem("lastMatchDeviceId");
+    const sameDevice = deviceMatch && deviceMatch === deviceId;
 
     selectedTeamKey = currentMatchup.teamKey;
 
@@ -2206,8 +2209,8 @@ if(history.length){
 
   showSelectedBanner(restoredOption, latest.picker);
 
-  const deviceMatchMaker = localStorage.getItem("lastMatchMakerDevice");
-  const sameDevice = deviceMatchMaker && deviceMatchMaker === latest.picker;
+  const deviceMatch = localStorage.getItem("lastMatchDeviceId");
+  const sameDevice = deviceMatch && deviceMatch === deviceId;
 
   const generatorContent = document.getElementById("generatorContent");
 
