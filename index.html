@@ -2014,9 +2014,12 @@ document.getElementById("genTab").addEventListener("click", ()=>{
   infoPage.style.display = "none";
 
   // Reset Generator page completely
-  pickerSelect.selectedIndex = 0;   // reset Match Maker dropdown
-  renderAttendance(true);           // re-check all players
-  resetGeneratedTeams();            // clear generated matchups
+  if(!lastGeneratedGroups){
+  pickerSelect.selectedIndex = 0;
+  renderAttendance(true);
+} else {
+  renderOptions(lastGeneratedGroups);
+}
 
   restoreCurrentMatchup();
 });
