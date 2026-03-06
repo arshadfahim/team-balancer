@@ -2080,11 +2080,22 @@ showSelectedBanner(restoredOption, currentMatchup.picker);
 const generatorContent = document.getElementById("generatorContent");
 
 if(generatorContent){
-  if(sameDevice){
+
+  // If no matchup is active → show generator
+  if(!currentMatchup){
     generatorContent.style.display = "block";
-  }else{
+  }
+
+  // Match active → only picker device can see generator
+  else if(sameDevice){
+    generatorContent.style.display = "block";
+  }
+
+  // Other devices → hide generator
+  else{
     generatorContent.style.display = "none";
   }
+
 }
 
 setInterval(updateMatchupTimer, 60000);
