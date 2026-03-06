@@ -2229,19 +2229,13 @@ if(!lastGeneratedGroups){
     playersCount: latest.playersCount
   };
 
-  showSelectedBanner(restoredOption, latest.picker);
-
-  const generatorContent = document.getElementById("generatorContent");
+showSelectedBanner(restoredOption, latest.picker);
 
 const deviceMatch = localStorage.getItem("lastMatchDeviceId");
 const sameDevice = deviceMatch && deviceMatch === deviceId;
 
-if(generatorContent){
-  if(sameDevice){
-    generatorContent.style.display = "block";
-  }else{
-    generatorContent.style.display = "none";
-  }
+if(!sameDevice){
+  document.getElementById("generatorContent").style.display = "block";
 }
 
   }
