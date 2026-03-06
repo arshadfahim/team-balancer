@@ -954,6 +954,8 @@ let selectedTeamOptionCache = null;
 let isRenderingAttendance = false;
 let isSelectingMatch = false;
 
+let currentMatchup = null;
+
 /* =========================
    UTIL
 ========================= */
@@ -1585,6 +1587,9 @@ showStatus("Processing team selection...", "loading", true);
     playersCount: option.playersCount,
     teamKey: option.teamKey
   };
+
+  currentMatchup = entry;
+localStorage.setItem("currentMatchup", JSON.stringify(entry));
 
   history = loadHistory();
   history.unshift(entry);
