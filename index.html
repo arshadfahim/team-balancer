@@ -686,6 +686,7 @@ button.danger{
 </head>
 
 <body>
+  <div id="deviceDebug" style="text-align:center; font-size:12px; opacity:0.6; margin-bottom:8px;"></div>
   <div class="container">
 <div id="statusBar" style="display:none; margin-bottom:12px; padding:10px 14px; border-radius:12px; font-weight:700; text-align:center;"></div>
         <div class="tabs">
@@ -962,6 +963,7 @@ let currentMatchup = null;
 
 const deviceId = localStorage.getItem("deviceId") || crypto.randomUUID();
 localStorage.setItem("deviceId", deviceId);
+document.getElementById("deviceDebug").textContent = "Device ID: " + deviceId;
 
 /* =========================
    UTIL
