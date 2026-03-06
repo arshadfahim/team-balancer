@@ -2096,6 +2096,18 @@ time:
       
     })).sort((a,b)=>b.timestamp-a.timestamp);
 
+    historyFromCloud.forEach(match => {
+  match.skillBlue = match.blue.reduce((sum,name)=>{
+    const p = players.find(pl=>pl.name === name);
+    return sum + (p ? p.skill : 0);
+  },0);
+
+  match.skillRed = match.red.reduce((sum,name)=>{
+    const p = players.find(pl=>pl.name === name);
+    return sum + (p ? p.skill : 0);
+  },0);
+});
+
 // Normalize and compare players before overwriting
 const normalize = arr =>
   [...arr]
