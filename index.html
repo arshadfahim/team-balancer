@@ -1225,6 +1225,7 @@ pickerSelect.addEventListener("change", ()=>{
   // Reset selected team
   selectedTeamKey = null;
   currentMatchup = null;
+  localStorage.removeItem("currentMatchup");
 
   // Clear generated teams
   resultDiv.innerHTML = "";
