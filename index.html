@@ -2068,6 +2068,12 @@ function updateMatchupTimer(){
 }
 
 setInterval(updateMatchupTimer, 60000);
+
+} catch(e){
+  console.warn("Failed to restore matchup:", e);
+}
+
+}
   
   /* ===========================
    GOOGLE CLOUD SYNC LAYER
