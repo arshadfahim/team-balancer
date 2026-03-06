@@ -2193,7 +2193,6 @@ if(history.length){
   const latest = history[0];
 
   currentMatchup = latest;
-
   selectedTeamKey = latest.teamKey;
 
   const restoredOption = {
@@ -2206,6 +2205,19 @@ if(history.length){
   };
 
   showSelectedBanner(restoredOption, latest.picker);
+
+  const deviceMatchMaker = localStorage.getItem("lastMatchMakerDevice");
+  const sameDevice = deviceMatchMaker && deviceMatchMaker === latest.picker;
+
+  const generatorContent = document.getElementById("generatorContent");
+
+  if(generatorContent){
+    if(sameDevice){
+      generatorContent.style.display = "block";
+    }else{
+      generatorContent.style.display = "none";
+    }
+  }
 
 }
     
