@@ -2209,7 +2209,9 @@ if(history.length){
 
   currentMatchup = latest;
   if(!selectedTeamKey){
+  if(!lastGeneratedGroups){
   selectedTeamKey = latest.teamKey;
+}
 }
 
   const restoredOption = {
