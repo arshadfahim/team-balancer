@@ -1333,6 +1333,10 @@ function generateTeams(){
     if(isSelectingMatch) return;
 
     const picker = pickerSelect.value;
+
+  selectedTeamKey = null;
+  currentMatchup = null;
+  
   if(!picker){
 showStatus("Select the Match Maker before generating matchups.", "error");
     return;
