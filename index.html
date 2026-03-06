@@ -2061,8 +2061,7 @@ function restoreCurrentMatchup(){
 
     currentMatchup = JSON.parse(savedMatchup);
 
-    const deviceMatch = localStorage.getItem("lastMatchDeviceId");
-    const sameDevice = deviceMatch && deviceMatch === deviceId;
+    const sameDevice = currentMatchup && currentMatchup.deviceId === deviceId;
 
     selectedTeamKey = currentMatchup.teamKey;
 
@@ -2238,8 +2237,7 @@ if(!lastGeneratedGroups){
 
   showSelectedBanner(restoredOption, latest.picker);
 
-  const deviceMatch = localStorage.getItem("lastMatchDeviceId");
-  const sameDevice = deviceMatch && deviceMatch === deviceId;
+  const sameDevice = currentMatchup && currentMatchup.deviceId === deviceId;
 
   }
     
