@@ -1203,10 +1203,14 @@ pickerSelect.addEventListener("change", ()=>{
   if(allRadio) allRadio.checked = true;
 
   document.querySelectorAll('input[name="diffFilter"]').forEach(r=>{
+  const label = r.closest("label");
+
   if(r.value === "all"){
     r.disabled = false;
+    if(label) label.classList.remove("disabled-label");
   } else {
     r.disabled = true;
+    if(label) label.classList.add("disabled-label");
   }
 });
     
