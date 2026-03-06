@@ -2016,6 +2016,14 @@ function restoreCurrentMatchup(){
 
     showSelectedBanner(currentMatchup, currentMatchup.picker);
 
+    if(!sameDevice){
+
+  document.getElementById("attendance").style.display = "none";
+  document.querySelector(".controls").style.display = "none";
+  document.getElementById("result").style.display = "none";
+
+}
+
   }catch(e){
 
     console.warn("Failed to restore matchup");
