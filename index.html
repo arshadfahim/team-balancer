@@ -2213,17 +2213,7 @@ if(history.length){
   const deviceMatch = localStorage.getItem("lastMatchDeviceId");
   const sameDevice = deviceMatch && deviceMatch === deviceId;
 
-  const generatorContent = document.getElementById("generatorContent");
-
-  if(generatorContent){
-    if(sameDevice){
-      generatorContent.style.display = "block";
-    }else{
-      generatorContent.style.display = "none";
-    }
   }
-
-}
     
 if (playersChanged && lastGeneratedGroups) {
   renderOptions(lastGeneratedGroups);
