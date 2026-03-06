@@ -1182,8 +1182,14 @@ clearSelectedBanner();
 
 /* When picker changes: reset page (but keep attendance selection) */
 pickerSelect.addEventListener("change", ()=>{
+
+  // Reset radio filter to "All Options"
+  const allRadio = document.querySelector('input[name="diffFilter"][value="all"]');
+  if(allRadio) allRadio.checked = true;
+
   resetGeneratedTeams();
   renderAttendance(true);
+
 });
 
 /* =========================
