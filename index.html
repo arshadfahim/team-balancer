@@ -1177,7 +1177,11 @@ clearSelectedBanner();
   
   // reset radio state
 document.querySelectorAll('input[name="diffFilter"]').forEach(r=>{
-  r.disabled = false;
+  if(r.value === "all"){
+    r.disabled = false;
+  } else {
+    r.disabled = true;
+  }
 });
 }
 
