@@ -1162,7 +1162,7 @@ function updatePickedByLine(){
 
 function resetGeneratedTeams(){
 
-  if(!lastGeneratedGroups){
+  if(lastGeneratedGroups){
   resultDiv.innerHTML = "";
 }
 
@@ -1203,9 +1203,13 @@ pickerSelect.addEventListener("change", ()=>{
   if(allRadio) allRadio.checked = true;
 
   document.querySelectorAll('input[name="diffFilter"]').forEach(r=>{
+  if(r.value === "all"){
     r.disabled = false;
-  });
-
+  } else {
+    r.disabled = true;
+  }
+});
+    
   updateRadioCounts({0:[],1:[],2:[],3:[],4:[]});
   
   // Reset player attendance
