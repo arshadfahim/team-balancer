@@ -2234,13 +2234,14 @@ showSelectedBanner(restoredOption, latest.picker);
 const deviceMatch = localStorage.getItem("lastMatchDeviceId");
 const sameDevice = deviceMatch && deviceMatch === deviceId;
 
-if(!sameDevice){
+const generatorContent = document.getElementById("generatorContent");
 
-  document.getElementById("pickerSelect").style.display = "none";
-  document.getElementById("attendance").style.display = "none";
-  document.getElementById("generateBtn").style.display = "none";
-  document.getElementById("result").style.display = "none";
-
+if(generatorContent){
+  if(sameDevice){
+    generatorContent.style.display = "block";
+  }else{
+    generatorContent.style.display = "none";
+  }
 }
 
   }
