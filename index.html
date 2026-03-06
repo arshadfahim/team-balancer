@@ -1616,17 +1616,18 @@ showStatus("Processing team selection...", "loading", true);
   
   const picker = pickerSelect.value;
   const entry = {
-    time: dubaiTimeString(),
-    timestamp: Date.now(),
-    picker,
-    blue: option.blue,
-    red: option.red,
-    skillBlue: option.skillBlue,
-    skillRed: option.skillRed,
-    diff: option.diff,
-    playersCount: option.playersCount,
-    teamKey: option.teamKey
-  };
+  time: dubaiTimeString(),
+  timestamp: Date.now(),
+  picker,
+  blue: option.blue,
+  red: option.red,
+  skillBlue: option.skillBlue,
+  skillRed: option.skillRed,
+  diff: option.diff,
+  playersCount: option.playersCount,
+  teamKey: option.teamKey,
+  deviceId: deviceId
+};
 
   currentMatchup = entry;
 localStorage.setItem("currentMatchup", JSON.stringify(entry));
@@ -2077,7 +2078,7 @@ setInterval(updateMatchupTimer, 60000);
 } catch(e){
   console.warn("Failed to restore matchup:", e);
 }
-
+  
 }
   
   /* ===========================
