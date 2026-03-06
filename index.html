@@ -2014,7 +2014,16 @@ function restoreCurrentMatchup(){
 
     selectedTeamKey = currentMatchup.teamKey;
 
-    showSelectedBanner(currentMatchup, currentMatchup.picker);
+    const restoredOption = {
+  blue: currentMatchup.blue,
+  red: currentMatchup.red,
+  skillBlue: currentMatchup.blue.length,
+  skillRed: currentMatchup.red.length,
+  diff: currentMatchup.diff,
+  playersCount: currentMatchup.playersCount
+};
+
+showSelectedBanner(restoredOption, currentMatchup.picker);
     
   }catch(e){
 
