@@ -1990,7 +1990,23 @@ document.getElementById("histTab").addEventListener("click", ()=>{
 renderPicker();
 renderAttendance();
 updateDiffAvailability({0:[],1:[],2:[],3:[],4:[]});
-  updateRadioCounts({0:[],1:[],2:[],3:[],4:[]}); // disable until generated
+updateRadioCounts({0:[],1:[],2:[],3:[],4:[]}); // disable until generated
+
+const savedMatchup = localStorage.getItem("currentMatchup");
+
+if(savedMatchup){
+  try{
+    currentMatchup = JSON.parse(savedMatchup);
+
+    selectedTeamKey = currentMatchup.teamKey;
+
+    showSelectedBanner(currentMatchup, currentMatchup.picker);
+
+  }catch(e){
+    console.warn("Failed to restore matchup");
+  }
+}
+  
   /* ===========================
    GOOGLE CLOUD SYNC LAYER
 =========================== */
