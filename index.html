@@ -2079,16 +2079,10 @@ const restoredOption = {
   playersCount: currentMatchup.playersCount
 };
 
-showSelectedBanner(restoredOption, currentMatchup.picker);
-
 const generatorContent = document.getElementById("generatorContent");
 
-if(generatorContent){
-  if(sameDevice){
-    generatorContent.style.display = "block";
-  }else{
-    generatorContent.style.display = "none";
-  }
+if(generatorContent && sameDevice){
+  generatorContent.style.display = "block";
 }
 
 setInterval(updateMatchupTimer, 60000);
