@@ -2245,17 +2245,9 @@ showSelectedBanner(restoredOption, latest.picker);
 selectedTeamBanner.style.display = "block";
 
 const deviceMatch = localStorage.getItem("lastMatchDeviceId");
-const sameDevice = deviceMatch && deviceMatch === deviceId;
+const isCreator = deviceMatch && deviceMatch === deviceId;
 
-const generatorContent = document.getElementById("generatorContent");
-
-if(generatorContent){
-  if(sameDevice){
-    generatorContent.style.display = "block";
-  }else{
-    generatorContent.style.display = "none";
-  }
-}
+updateDeviceView(isCreator);
 
   }
     
