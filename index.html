@@ -1965,6 +1965,8 @@ document.getElementById("genTab").addEventListener("click", ()=>{
   pickerSelect.selectedIndex = 0;   // reset Match Maker dropdown
   renderAttendance(true);           // re-check all players
   resetGeneratedTeams();            // clear generated matchups
+
+  restoreCurrentMatchup();
 });
   
 document.getElementById("histTab").addEventListener("click", ()=>{
