@@ -968,6 +968,24 @@ document.getElementById("deviceDebug").textContent = "Device ID: " + deviceId;
 /* =========================
    UTIL
 ========================= */
+
+function updateDeviceView(isCreator){
+
+  const generatorContent = document.getElementById("generatorContent");
+  const banner = document.getElementById("selectedTeamBanner");
+
+  if(isCreator){
+    generatorContent.style.display = "block";
+  }else{
+    generatorContent.style.display = "none";
+  }
+
+  if(banner){
+    banner.style.display = "block";
+  }
+
+}
+
 function dubaiTimeString(){
   const d = new Date();
 
