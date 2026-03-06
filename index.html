@@ -1479,6 +1479,13 @@ document.querySelectorAll(".team-row").forEach(row=>{
   if(existingBadge) existingBadge.remove();
 });
 
+// Reset all select buttons
+document.querySelectorAll(".team-row button.primary").forEach(btn=>{
+  btn.classList.remove("selected");
+  btn.textContent = "Select";
+  btn.disabled = false;
+});
+
 const selectedRow = document.querySelector(`.team-row[data-team-key="${option.teamKey}"]`);
 
 if(selectedRow){
