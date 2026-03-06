@@ -2036,18 +2036,13 @@ showSelectedBanner(restoredOption, currentMatchup.picker);
 
 const generatorContent = document.getElementById("generatorContent");
 
-if(!sameDevice && generatorContent){
-  generatorContent.style.display = "none";
-}
-    
-  }catch(e){
-
-    console.warn("Failed to restore matchup");
-
+if(generatorContent){
+  if(sameDevice){
+    generatorContent.style.display = "block";
+  }else{
+    generatorContent.style.display = "none";
   }
-
 }
-
 function updateMatchupTimer(){
 
   if(!currentMatchup || !selectedTimeAgo) return;
