@@ -1586,6 +1586,8 @@ showStatus("Processing team selection...", "loading", true);
     picker,
     blue: option.blue,
     red: option.red,
+    skillBlue: option.skillBlue,
+    skillRed: option.skillRed,
     diff: option.diff,
     playersCount: option.playersCount,
     teamKey: option.teamKey
@@ -2014,11 +2016,11 @@ function restoreCurrentMatchup(){
 
     selectedTeamKey = currentMatchup.teamKey;
 
-    const restoredOption = {
+const restoredOption = {
   blue: currentMatchup.blue,
   red: currentMatchup.red,
-  skillBlue: currentMatchup.blue.length,
-  skillRed: currentMatchup.red.length,
+  skillBlue: currentMatchup.skillBlue,
+  skillRed: currentMatchup.skillRed,
   diff: currentMatchup.diff,
   playersCount: currentMatchup.playersCount
 };
