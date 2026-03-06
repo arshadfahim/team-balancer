@@ -1439,6 +1439,12 @@ if(selectedTeamKey && option.teamKey === selectedTeamKey){
       btn.textContent = "Select";
       btn.addEventListener("click", ()=>onSelectOption(option));
 
+if(selectedTeamKey && option.teamKey === selectedTeamKey){
+  btn.classList.add("selected");
+  btn.textContent = "✓ SELECTED";
+  btn.disabled = true;
+}  
+
       const count = document.createElement("div");
       count.className = "picked-count";
       count.textContent = `Times Selected: ${getPickCountByKey(option.teamKey)}`;
