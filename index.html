@@ -1183,11 +1183,13 @@ clearSelectedBanner();
 /* When picker changes: reset page (but keep attendance selection) */
 pickerSelect.addEventListener("change", ()=>{
 
-  // Reset radio filter to "All Options"
-  const allRadio = document.querySelector('input[name="diffFilter"][value="all"]');
-  if(allRadio) allRadio.checked = true;
+  // Reset selected team state
+  selectedTeamKey = null;
 
+  // Reset generator completely
   resetGeneratedTeams();
+
+  // Reset player attendance
   renderAttendance(true);
 
 });
