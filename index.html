@@ -449,18 +449,6 @@ button.danger{
   gap:6px;
   flex:0 0 auto;
 }
-
-.selected-badge{
-  background:#facc15;
-  color:#111827;
-  font-weight:900;
-  font-size:11px;
-  padding:6px 10px;
-  border-radius:10px;
-  margin-bottom:4px;
-  text-align:center;
-  box-shadow:0 0 8px rgba(250,204,21,0.8);
-}
     
     .picked-count{
       font-size: 10px;
@@ -1481,9 +1469,6 @@ selectedTeamKey = option.teamKey;
 // Highlight the selected team
 document.querySelectorAll(".team-row").forEach(row=>{
   row.classList.remove("selected-option");
-
-  const existingBadge = row.querySelector(".selected-badge");
-  if(existingBadge) existingBadge.remove();
 });
 
 // Reset all select buttons
