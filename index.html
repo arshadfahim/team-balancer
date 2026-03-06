@@ -2146,6 +2146,7 @@ const playersFromCloud = data.players.map(r => ({
       diff: Number(r[4]),
       playersCount: Number(r[5]),
       teamKey: r[6],
+      deviceId: r[7] || null,
 
 time:
   new Date(Number(r[0])).toLocaleDateString("en-US", {
