@@ -1175,6 +1175,8 @@ clearSelectedBanner();
   const allRadio = document.querySelector('input[name="diffFilter"][value="all"]');
   if(allRadio) allRadio.checked = true;
 
+document.querySelector('input[name="diffFilter"][value="all"]').checked = true;
+  
   // disable diff radios until next generate
   updateDiffAvailability({0:[],1:[],2:[],3:[],4:[]});
   updateRadioCounts({0:[],1:[],2:[],3:[],4:[]});
