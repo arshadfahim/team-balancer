@@ -1391,6 +1391,9 @@ if(diff <= 4){
 ========================= */
 function showSelectedBanner(option, picker){
   selectedTeamOptionCache = option;
+
+  updateMatchupTimer();
+  
   selectedPickedBy.innerHTML = `Match Maker: <strong>${picker}</strong>`;
 
   const bluePlayers = [...option.blue].sort();
@@ -2036,6 +2039,32 @@ showSelectedBanner(restoredOption, currentMatchup.picker);
   }
 
 }
+
+function updateMatchupTimer(){
+
+  if(!currentMatchup || !selectedTimeAgo) return;
+
+  const diff = Date.now() - currentMatchup.timestamp;
+
+  const minutes = Math.floor(diff / 60000);
+  const hours = Math.floor(minutes / 60);
+
+  let text;
+
+  if(minutes < 1){
+    text = "Matchup selected just now";
+  }
+  else if(minutes < 60){
+    text = `Matchup selected ${minutes} minute${minutes === 1 ? "" : "s"} ago`;
+  }
+  else{
+    text = `Matchup selected ${hours} hour${hours === 1 ? "" : "s"} ago`;
+  }
+
+  selectedTimeAgo.textContent = text;
+}
+
+setInterval(updateMatchupTimer, 60000);
   
   /* ===========================
    GOOGLE CLOUD SYNC LAYER
