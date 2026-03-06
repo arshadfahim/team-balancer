@@ -1182,7 +1182,6 @@ clearSelectedBanner();
 
 /* When picker changes: reset page (but keep attendance selection) */
 pickerSelect.addEventListener("change", ()=>{
-  selectedTeamKey = null;
   resetGeneratedTeams();
   renderAttendance(true);
 });
