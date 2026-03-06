@@ -2061,7 +2061,8 @@ function restoreCurrentMatchup(){
 
     currentMatchup = JSON.parse(savedMatchup);
 
-    const sameDevice = currentMatchup && currentMatchup.deviceId === deviceId;
+    const deviceMatch = localStorage.getItem("lastMatchDeviceId");
+    const sameDevice = deviceMatch && deviceMatch === deviceId;
 
     selectedTeamKey = currentMatchup.teamKey;
 
@@ -2079,22 +2080,11 @@ showSelectedBanner(restoredOption, currentMatchup.picker);
 const generatorContent = document.getElementById("generatorContent");
 
 if(generatorContent){
-
-  // If no matchup is active → show generator
-  if(!currentMatchup){
+  if(sameDevice){
     generatorContent.style.display = "block";
-  }
-
-  // Match active → only picker device can see generator
-  else if(sameDevice){
-    generatorContent.style.display = "block";
-  }
-
-  // Other devices → hide generator
-  else{
+  }else{
     generatorContent.style.display = "none";
   }
-
 }
 
 setInterval(updateMatchupTimer, 60000);
@@ -2146,7 +2136,6 @@ const playersFromCloud = data.players.map(r => ({
       diff: Number(r[4]),
       playersCount: Number(r[5]),
       teamKey: r[6],
-      deviceId: r[7] || null,
 
 time:
   new Date(Number(r[0])).toLocaleDateString("en-US", {
@@ -2238,25 +2227,11 @@ if(!lastGeneratedGroups){
 
   showSelectedBanner(restoredOption, latest.picker);
 
-const generatorContent = document.getElementById("generatorContent");
+  const deviceMatch = localStorage.getItem("lastMatchDeviceId");
+  const sameDevice = deviceMatch && deviceMatch === deviceId;
 
-const sameDevice =
-  latest.deviceId && latest.deviceId === deviceId;
-
-if(generatorContent){
-
-  if(!latest.deviceId){
-    generatorContent.style.display = "block";
   }
-  else if(sameDevice){
-    generatorContent.style.display = "block";
-  }
-  else{
-    generatorContent.style.display = "none";
-  }
-
-}  
-
+    
 if (playersChanged && lastGeneratedGroups) {
   renderOptions(lastGeneratedGroups);
   updateRadioCounts(lastGeneratedGroups);
