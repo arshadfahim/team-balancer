@@ -2306,6 +2306,19 @@ if(!lastGeneratedGroups){
 showSelectedBanner(restoredOption, latest.picker);
 selectedTeamBanner.style.display = "block";
 
+// Update Matchup page banner
+const matchupBanner = document.getElementById("matchupBanner");
+const matchupPickedBy = document.getElementById("matchupPickedBy");
+const matchupTeamLines = document.getElementById("matchupTeamLines");
+const matchupTimeAgo = document.getElementById("matchupTimeAgo");
+
+if(matchupBanner){
+  matchupPickedBy.innerHTML = selectedPickedBy.innerHTML;
+  matchupTeamLines.innerHTML = selectedTeamLines.innerHTML;
+  matchupTimeAgo.innerHTML = selectedTimeAgo.innerHTML;
+  matchupBanner.style.display = "block";
+}  
+
 const deviceMatch = localStorage.getItem("lastMatchDeviceId");
 const isCreator = deviceMatch && deviceMatch === deviceId;
 
