@@ -2116,9 +2116,10 @@ showStatus("Changes saved successfully.", "success");
 
 document.getElementById("adminTab").addEventListener("click", ()=>{
 
+  // NEW: hide both banners when going to Admin
   document.getElementById("matchupBanner").style.display = "none";
   document.getElementById("selectedTeamBanner").style.display = "none";
-  
+
   const pass = prompt("Enter Admin Password:");
   if(pass !== ADMIN_PASSWORD){
     alert("Incorrect password.");
@@ -2189,14 +2190,16 @@ document.getElementById("histTab").addEventListener("click", ()=>{
 
   document.getElementById("infoTab").addEventListener("click", ()=>{
 
+  // NEW: hide both banners when going to Info
   document.getElementById("matchupBanner").style.display = "none";
   document.getElementById("selectedTeamBanner").style.display = "none";
-    
+
   generatorPage.style.display = "none";
   historyPage.style.display = "none";
   adminPage.style.display = "none";
   infoPage.style.display = "block";
 });
+
   
 /* =========================
    INITIALIZE
