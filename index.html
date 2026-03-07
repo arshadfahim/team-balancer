@@ -2072,19 +2072,6 @@ updateRadioCounts({0:[],1:[],2:[],3:[],4:[]}); // disable until generated
 
 restoreCurrentMatchup();
 
-document.getElementById("overrideMatchBtn").addEventListener("click", () => {
-
-  /* this device becomes the creator */
-  localStorage.setItem("lastMatchDeviceId", deviceId);
-
-  /* clear previous matchup */
-  localStorage.removeItem("currentMatchup");
-
-  /* reload page so generator loads clean */
-  location.reload();
-
-});
-
 console.log("DEVICE ID:", deviceId);
 
 function restoreCurrentMatchup(){
