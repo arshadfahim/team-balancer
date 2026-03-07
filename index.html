@@ -974,14 +974,14 @@ function updateDeviceView(isCreator){
   const generatorContent = document.getElementById("generatorContent");
   const banner = document.getElementById("selectedTeamBanner");
 
-  if(isCreator){
-    generatorContent.style.display = "block";
-  }else{
-    generatorContent.style.display = "none";
-  }
+  if(!banner) return;
 
-  if(banner){
-    banner.style.display = "block";
+  /* Always show banner */
+  banner.style.display = "block";
+
+  /* Only creator sees generator */
+  if(generatorContent){
+    generatorContent.style.display = isCreator ? "block" : "none";
   }
 
 }
