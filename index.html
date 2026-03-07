@@ -2365,21 +2365,6 @@ if(history.length){
 
 }
 
-if(!lastGeneratedGroups){
-  selectedTeamKey = latest.teamKey;
-}
-
-  const restoredOption = {
-  blue: latest.blue,
-  red: latest.red,
-  skillBlue: latest.skillBlue,
-  skillRed: latest.skillRed,
-  diff: latest.diff,
-  playersCount: latest.playersCount
-};
-
-showSelectedBanner(restoredOption, latest.picker);
-
 // Only show Generator banner if Generator tab is open
 if(generatorPage.style.display !== "none"){
   selectedTeamBanner.style.display = "block";
