@@ -1521,6 +1521,20 @@ function showSelectedBanner(option, picker){
 
 selectedTeamBanner.style.display = "block";
 
+// Flash animation for Generator banner
+selectedTeamBanner.classList.remove("matchup-flash");
+void selectedTeamBanner.offsetWidth;
+selectedTeamBanner.classList.add("matchup-flash");
+
+// Flash animation for Matchup page banner
+const matchupBanner = document.getElementById("matchupBanner");
+
+if(matchupBanner){
+  matchupBanner.classList.remove("matchup-flash");
+  void matchupBanner.offsetWidth;
+  matchupBanner.classList.add("matchup-flash");
+}  
+
 const matchupBanner = document.getElementById("matchupBanner");
 const matchupPickedBy = document.getElementById("matchupPickedBy");
 const matchupTeamLines = document.getElementById("matchupTeamLines");
