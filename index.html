@@ -1074,25 +1074,18 @@ function updateMatchupTimer(){
 
   if(!currentMatchup || !selectedTimeAgo) return;
 
+    const timeString = new Date(currentMatchup.timestamp).toLocaleTimeString("en-US", {
+    timeZone: "Asia/Dubai",
+    hour: "numeric",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: true
+  });
+
+  selectedTimeAgo.textContent = "Matchup selected at " + timeString + " GST";
+
   const diff = Date.now() - currentMatchup.timestamp;
   const remaining = MATCHUP_LIFETIME - diff;
-
-  const minutes = Math.floor(diff / 60000);
-  const hours = Math.floor(minutes / 60);
-
-  let text;
-
-  if(minutes < 1){
-    text = "Matchup selected just now";
-  }
-  else if(minutes < 60){
-    text = `Matchup selected ${minutes} minute${minutes === 1 ? "" : "s"} ago`;
-  }
-  else{
-    text = `Matchup selected ${hours} hour${hours === 1 ? "" : "s"} ago`;
-  }
-
-  selectedTimeAgo.textContent = text;
 
   const expiry = document.getElementById("matchExpiry");
   if(!expiry) return;
