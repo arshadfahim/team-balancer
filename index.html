@@ -1527,10 +1527,12 @@ void selectedTeamBanner.offsetWidth;
 selectedTeamBanner.classList.add("matchup-flash");
 
 // Flash animation for Matchup page banner
-if(matchupBanner){
-  matchupBanner.classList.remove("matchup-flash");
-  void matchupBanner.offsetWidth;
-  matchupBanner.classList.add("matchup-flash");
+const matchupBannerFlash = document.getElementById("matchupBanner");
+
+if(matchupBannerFlash){
+  matchupBannerFlash.classList.remove("matchup-flash");
+  void matchupBannerFlash.offsetWidth;
+  matchupBannerFlash.classList.add("matchup-flash");
 }  
 
 const matchupBanner = document.getElementById("matchupBanner");
