@@ -1212,6 +1212,7 @@ function renderAttendance(resetAll = false){
     const cb = document.createElement("input");
     cb.type = "checkbox";
     cb.id = "p"+i;
+    cb.disabled = !pickerSelect.value;
     
 if (resetAll) {
   cb.checked = true;
