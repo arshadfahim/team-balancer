@@ -2375,9 +2375,7 @@ const deviceMatch = localStorage.getItem("lastMatchDeviceId");
 const isCreator = deviceMatch && deviceMatch === deviceId;
 
 updateDeviceView(isCreator);
-
-  }
-    
+ 
 if (playersChanged && lastGeneratedGroups) {
   renderOptions(lastGeneratedGroups);
   updateRadioCounts(lastGeneratedGroups);
