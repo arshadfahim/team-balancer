@@ -704,6 +704,10 @@ button.danger{
         <div id="selectedPickedBy" class="selected-pickedby"></div>
         <div id="selectedTeamLines" class="selected-lines"></div>
         <div id="selectedTimeAgo" class="selected-footer"></div>
+
+        <div style="text-align:center; margin-top:10px;">
+  <button id="overrideMatchBtn" class="primary">GENERATE NEW MATCHUP</button>
+</div>
       </div>
 
       <div id="generatorContent">
@@ -2071,6 +2075,18 @@ updateDiffAvailability({0:[],1:[],2:[],3:[],4:[]});
 updateRadioCounts({0:[],1:[],2:[],3:[],4:[]}); // disable until generated
 
 restoreCurrentMatchup();
+
+document.getElementById("overrideMatchBtn").addEventListener("click", () => {
+
+  localStorage.removeItem("lastMatchDeviceId");
+
+  const generatorContent = document.getElementById("generatorContent");
+
+  if(generatorContent){
+    generatorContent.style.display = "block";
+  }
+
+});
 
 console.log("DEVICE ID:", deviceId);
 
