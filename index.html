@@ -2078,13 +2078,10 @@ restoreCurrentMatchup();
 
 document.getElementById("overrideMatchBtn").addEventListener("click", () => {
 
-  localStorage.removeItem("lastMatchDeviceId");
+  /* This device becomes the new controller */
+  localStorage.setItem("lastMatchDeviceId", deviceId);
 
-  const generatorContent = document.getElementById("generatorContent");
-
-  if(generatorContent){
-    generatorContent.style.display = "block";
-  }
+  updateDeviceView(true);
 
 });
 
