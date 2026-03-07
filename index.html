@@ -1718,6 +1718,14 @@ rows.forEach(row=>{
 // Show splash banner
 showSelectedBanner(option, picker, true);
 
+const matchupBannerFlash = document.getElementById("matchupBanner");
+
+if(matchupBannerFlash){
+  matchupBannerFlash.classList.remove("matchup-flash");
+  void matchupBannerFlash.offsetWidth;
+  matchupBannerFlash.classList.add("matchup-flash");
+}
+
 setTimeout(()=>{
   isSelectingMatch = false;
 },1500);
