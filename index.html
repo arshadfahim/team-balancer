@@ -833,7 +833,9 @@ The goal is to keep matches <b>competitive, fair, and balanced</b> even when tea
    CONFIG / STORAGE
 ========================= */
 const ADMIN_PASSWORD = "UT4L!FE";
+const MATCHUP_LIFETIME = 60000; // 1 minute
 
+  function showStatus(message, type = "info", persistent = false) {
   function showStatus(message, type = "info", persistent = false) {
   const bar = document.getElementById("statusBar");
   if (!bar) return;
@@ -1113,6 +1115,22 @@ function displayCountForDiff(groups, d){
 function getPickCountByKey(key){
   history = loadHistory();
   return history.filter(h => h.teamKey === key).length;
+}
+
+function matchupExpired(match){
+  if(!match || !match.timestamp) return true;
+  return (Date.now() - match.timestamp) > MATCHUP_LIFETIME;
+}
+
+function showNoCurrentMatchup(){
+  selectedPickedBy.innerHTML = "Waiting for Match Maker";
+  selectedTeamLines.innerHTML = `
+    <div class="selected-footer" style="margin-top:6px;">
+      No teams currently selected
+    </div>
+  `;
+  selectedTimeAgo.textContent = "";
+  selectedTeamBanner.style.display = "block";
 }
 
 /* =========================
@@ -1470,6 +1488,13 @@ if(diff <= 4){
    RENDER OPTIONS + SELECT + COUNTERS
 ========================= */
 function showSelectedBanner(option, picker, flash=false){
+
+  if(currentMatchup && matchupExpired(currentMatchup)){
+    clearSelectedBanner();
+    showNoCurrentMatchup();
+    return;
+  }
+
   selectedTeamOptionCache = option;
 
   updateMatchupTimer();
@@ -2284,6 +2309,13 @@ if (playersChanged && !isAdminEditing) {
 if(history.length){
 
   const latest = history[0];
+
+  if(matchupExpired(latest)){
+    currentMatchup = null;
+    clearSelectedBanner();
+    showNoCurrentMatchup();
+    return;
+  }
 
   currentMatchup = latest;
 
