@@ -118,6 +118,15 @@ h2, h3{
   font-size:clamp(13px,2vw,15px);
 }
 
+#matchExpiry{
+  position:absolute;
+  bottom:6px;
+  right:10px;
+  font-size:10px;
+  opacity:0.7;
+  font-weight:700;
+}
+
 /* Selected teams boxes */
 .selected-teams-grid{
   position:relative;
@@ -752,11 +761,13 @@ button.danger{
     <div id="generatorPage">
 
       <div id="selectedTeamBanner" class="selected-banner scoreboard-style" style="display:none; max-width:600px; margin:20px auto;">
-        <div class="selected-title">CURRENT MATCHUP</div>
-        <div id="selectedPickedBy" class="selected-pickedby"></div>
-        <div id="selectedTeamLines" class="selected-lines"></div>
-        <div id="selectedTimeAgo" class="selected-footer"></div>
-      </div>
+  <div class="selected-title">CURRENT MATCHUP</div>
+  <div id="selectedPickedBy" class="selected-pickedby"></div>
+  <div id="selectedTeamLines" class="selected-lines"></div>
+  <div id="selectedTimeAgo" class="selected-footer"></div>
+
+  <div id="matchExpiry"></div>
+</div>
 
       <div id="generatorContent">
       <h3 style="text-align:center;">Match Maker</h3>
@@ -1064,6 +1075,7 @@ function updateMatchupTimer(){
   if(!currentMatchup || !selectedTimeAgo) return;
 
   const diff = Date.now() - currentMatchup.timestamp;
+  const remaining = MATCHUP_LIFETIME - diff;
 
   const minutes = Math.floor(diff / 60000);
   const hours = Math.floor(minutes / 60);
@@ -1081,6 +1093,19 @@ function updateMatchupTimer(){
   }
 
   selectedTimeAgo.textContent = text;
+
+  const expiry = document.getElementById("matchExpiry");
+  if(!expiry) return;
+
+  if(remaining <= 0){
+    expiry.textContent = "";
+    return;
+  }
+
+  const min = Math.floor(remaining / 60000);
+  const sec = Math.floor((remaining % 60000) / 1000);
+
+  expiry.textContent = `Matchup expires in ${min}:${sec.toString().padStart(2,"0")}`;
 }  
   
 function getSelectedPlayers(){
@@ -2243,7 +2268,7 @@ if(generatorContent && sameDevice){
   generatorContent.style.display = "block";
 }
 
-setInterval(updateMatchupTimer, 60000);
+setInterval(updateMatchupTimer, 1000);
 
 } catch(e){
   console.warn("Failed to restore matchup:", e);
