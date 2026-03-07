@@ -2140,14 +2140,14 @@ document.getElementById("adminTab").addEventListener("click", ()=>{
 ========================= */
 document.getElementById("matchTab").addEventListener("click", ()=>{
 
+  // NEW: hide the generator banner when going to Matchup
   document.getElementById("selectedTeamBanner").style.display = "none";
 
+  document.getElementById("matchupPage").style.display = "block";
   generatorPage.style.display = "none";
   historyPage.style.display = "none";
   adminPage.style.display = "none";
   infoPage.style.display = "none";
-
-  document.getElementById("matchupPage").style.display = "block";
 });
   
 document.getElementById("genTab").addEventListener("click", ()=>{
