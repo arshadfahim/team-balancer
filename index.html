@@ -2172,9 +2172,10 @@ document.getElementById("genTab").addEventListener("click", ()=>{
   
 document.getElementById("histTab").addEventListener("click", ()=>{
 
+  // NEW: hide both banners when going to History
   document.getElementById("matchupBanner").style.display = "none";
   document.getElementById("selectedTeamBanner").style.display = "none";
-  
+
   generatorPage.style.display = "none";
   historyPage.style.display = "block";
   adminPage.style.display = "none";
@@ -2184,6 +2185,7 @@ document.getElementById("histTab").addEventListener("click", ()=>{
   historyFilter.value = "all";
   renderHistory();
 });
+
 
   document.getElementById("infoTab").addEventListener("click", ()=>{
 
