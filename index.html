@@ -1720,6 +1720,20 @@ fetch(GOOGLE_API_URL, {
     populateHistoryFilter();
     renderHistory();
 }
+
+// Update Matchup tab banner
+const matchupBanner = document.getElementById("matchupBanner");
+const matchupPickedBy = document.getElementById("matchupPickedBy");
+const matchupTeamLines = document.getElementById("matchupTeamLines");
+const matchupTimeAgo = document.getElementById("matchupTimeAgo");
+
+if(matchupBanner){
+  matchupPickedBy.innerHTML = selectedPickedBy.innerHTML;
+  matchupTeamLines.innerHTML = selectedTeamLines.innerHTML;
+  matchupTimeAgo.innerHTML = selectedTimeAgo.innerHTML;
+  matchupBanner.style.display = "block";
+}
+  
 }
 
 /* =========================
