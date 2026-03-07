@@ -2115,6 +2115,7 @@ showStatus("Changes saved successfully.", "success");
 document.getElementById("adminTab").addEventListener("click", ()=>{
 
   document.getElementById("matchupBanner").style.display = "none";
+  document.getElementById("selectedTeamBanner").style.display = "none";
   
   const pass = prompt("Enter Admin Password:");
   if(pass !== ADMIN_PASSWORD){
@@ -2167,13 +2168,12 @@ document.getElementById("genTab").addEventListener("click", ()=>{
 document.getElementById("histTab").addEventListener("click", ()=>{
 
   document.getElementById("matchupBanner").style.display = "none";
+  document.getElementById("selectedTeamBanner").style.display = "none";
   
   generatorPage.style.display = "none";
   historyPage.style.display = "block";
   adminPage.style.display = "none";
   infoPage.style.display = "none";
-
-  document.getElementById("matchupBanner").style.display = "none";
 
   populateHistoryFilter();
   historyFilter.value = "all";
@@ -2182,14 +2182,13 @@ document.getElementById("histTab").addEventListener("click", ()=>{
 
   document.getElementById("infoTab").addEventListener("click", ()=>{
 
-    document.getElementById("matchupBanner").style.display = "none";
+  document.getElementById("matchupBanner").style.display = "none";
+  document.getElementById("selectedTeamBanner").style.display = "none";
     
   generatorPage.style.display = "none";
   historyPage.style.display = "none";
   adminPage.style.display = "none";
   infoPage.style.display = "block";
-
-  document.getElementById("matchupBanner").style.display = "none";
 });
   
 /* =========================
