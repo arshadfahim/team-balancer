@@ -2148,6 +2148,8 @@ document.getElementById("genTab").addEventListener("click", ()=>{
   infoPage.style.display = "none";
   document.getElementById("matchupPage").style.display = "none";
 
+  document.getElementById("matchupBanner").style.display = "none";
+
   // Reset Generator page completely
   if(!lastGeneratedGroups){
   pickerSelect.selectedIndex = 0;
@@ -2164,6 +2166,9 @@ document.getElementById("histTab").addEventListener("click", ()=>{
   historyPage.style.display = "block";
   adminPage.style.display = "none";
   infoPage.style.display = "none";
+
+  document.getElementById("matchupBanner").style.display = "none";
+
   populateHistoryFilter();
   historyFilter.value = "all";
   renderHistory();
@@ -2174,6 +2179,8 @@ document.getElementById("histTab").addEventListener("click", ()=>{
   historyPage.style.display = "none";
   adminPage.style.display = "none";
   infoPage.style.display = "block";
+
+  document.getElementById("matchupBanner").style.display = "none";
 });
   
 /* =========================
