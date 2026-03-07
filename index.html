@@ -1499,7 +1499,18 @@ function showSelectedBanner(option, picker){
     </div>
   `;
 
-  selectedTeamBanner.style.display = "block";
+selectedTeamBanner.style.display = "block";
+
+const matchupBanner = document.getElementById("matchupBanner");
+const matchupPickedBy = document.getElementById("matchupPickedBy");
+const matchupTeamLines = document.getElementById("matchupTeamLines");
+
+if(matchupBanner){
+  matchupPickedBy.innerHTML = selectedPickedBy.innerHTML;
+  matchupTeamLines.innerHTML = selectedTeamLines.innerHTML;
+  matchupBanner.style.display = "block";
+}
+  
 }
 
 function renderOptions(groups){
