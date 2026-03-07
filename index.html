@@ -1534,6 +1534,8 @@ function showSelectedBanner(option, picker, flash=false){
 
 selectedTeamBanner.style.display = "block";
 
+if(flash){
+
 // Flash animation for Generator banner
 selectedTeamBanner.classList.remove("matchup-flash");
 void selectedTeamBanner.offsetWidth;
@@ -1546,6 +1548,7 @@ if(matchupBannerFlash){
   matchupBannerFlash.classList.remove("matchup-flash");
   void matchupBannerFlash.offsetWidth;
   matchupBannerFlash.classList.add("matchup-flash");
+}
 }  
 
 const matchupBanner = document.getElementById("matchupBanner");
@@ -1713,7 +1716,7 @@ rows.forEach(row=>{
 // updatePlayerCount();
 
 // Show splash banner
-showSelectedBanner(option, picker);
+showSelectedBanner(option, picker, true);
 
 setTimeout(()=>{
   isSelectingMatch = false;
