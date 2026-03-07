@@ -2268,7 +2268,9 @@ if(generatorContent && sameDevice){
   generatorContent.style.display = "block";
 }
 
-setInterval(updateMatchupTimer, 1000);
+setInterval(() => {
+  updateMatchupTimer();
+}, 1000);
 
 } catch(e){
   console.warn("Failed to restore matchup:", e);
@@ -2413,7 +2415,7 @@ if(history.length){
     playersCount: latest.playersCount
   };
 
-  showSelectedBanner(restoredOption, latest.picker);
+  showSelectedBanner(restoredOption, latest.picker, false);
 
 }else{
 
