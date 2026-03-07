@@ -1031,13 +1031,13 @@ function updateDeviceView(isCreator){
   /* Always show banner */
   banner.style.display = "block";
 
-  /* Only creator sees generator */
+  /* Always show generator controls */
   if(generatorContent){
-    generatorContent.style.display = isCreator ? "block" : "none";
+    generatorContent.style.display = "block";
   }
 
 }
-
+  
 function dubaiTimeString(){
   const d = new Date();
 
