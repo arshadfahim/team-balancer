@@ -1556,7 +1556,7 @@ const matchupPickedBy = document.getElementById("matchupPickedBy");
 const matchupTeamLines = document.getElementById("matchupTeamLines");
 const matchupTimeAgo = document.getElementById("matchupTimeAgo");
 
-if(matchupBanner){
+if(matchupBanner && document.getElementById("matchupPage").style.display !== "none"){
   matchupPickedBy.innerHTML = selectedPickedBy.innerHTML;
   matchupTeamLines.innerHTML = selectedTeamLines.innerHTML;
   matchupTimeAgo.innerHTML = selectedTimeAgo.innerHTML;
