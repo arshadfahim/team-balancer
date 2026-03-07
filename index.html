@@ -819,7 +819,6 @@ The goal is to keep matches <b>competitive, fair, and balanced</b> even when tea
 /* =========================
    CONFIG / STORAGE
 ========================= */
-const ADMIN_PASSWORD = "UT4L!FE";
 const MATCHUP_LIFETIME = 60000; // 1 minute
 
 function showStatus(message, type = "info", persistent = false) {
@@ -1805,13 +1804,33 @@ div.innerHTML = `
   });
 }
 
-document.getElementById("clearHistoryBtn").addEventListener("click", ()=>{
+document.getElementById("clearHistoryBtn").addEventListener("click", async ()=>{
+
   const pass = prompt("Enter Admin Password:");
-if(pass !== ADMIN_PASSWORD){ 
-  showStatus("Incorrect password.", "error"); 
-  return; 
-}
- 
+  if(!pass) return;
+
+  try{
+
+    const res = await fetch(GOOGLE_API_URL,{
+      method:"POST",
+      body:new URLSearchParams({
+        action:"verifyAdmin",
+        payload: pass
+      })
+    });
+
+    const data = await res.json();
+
+    if(!data.valid){
+      showStatus("Incorrect password.", "error");
+      return;
+    }
+
+  }catch(e){
+    showStatus("Unable to verify password.", "error");
+    return;
+  }
+
   if(confirm("Clear all history?")){
  
   showStatus("Clearing history...", "loading", true);
@@ -2045,14 +2064,32 @@ showStatus("Changes saved successfully.", "success");
   adminSection.appendChild(actions);
 }
 
-document.getElementById("adminTab").addEventListener("click", ()=>{
+document.getElementById("adminTab").addEventListener("click", async ()=>{
 
-  // NEW: hide both banners when going to Admin
   document.getElementById("selectedTeamBanner").style.display = "none";
 
   const pass = prompt("Enter Admin Password:");
-  if(pass !== ADMIN_PASSWORD){
-    alert("Incorrect password.");
+  if(!pass) return;
+
+  try{
+
+    const res = await fetch(GOOGLE_API_URL,{
+      method:"POST",
+      body:new URLSearchParams({
+        action:"verifyAdmin",
+        payload: pass
+      })
+    });
+
+    const data = await res.json();
+
+    if(!data.valid){
+      alert("Incorrect password.");
+      return;
+    }
+
+  }catch(e){
+    alert("Unable to verify password.");
     return;
   }
 
