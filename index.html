@@ -2342,6 +2342,29 @@ if(history.length){
 
   currentMatchup = latest;
 
+  if(!lastGeneratedGroups){
+    selectedTeamKey = latest.teamKey;
+  }
+
+  const restoredOption = {
+    blue: latest.blue,
+    red: latest.red,
+    skillBlue: latest.skillBlue,
+    skillRed: latest.skillRed,
+    diff: latest.diff,
+    playersCount: latest.playersCount
+  };
+
+  showSelectedBanner(restoredOption, latest.picker);
+
+}else{
+
+  currentMatchup = null;
+  clearSelectedBanner();
+  showNoCurrentMatchup();
+
+}
+
 if(!lastGeneratedGroups){
   selectedTeamKey = latest.teamKey;
 }
