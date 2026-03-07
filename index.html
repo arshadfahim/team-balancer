@@ -711,14 +711,21 @@ button.danger{
   text-align:center;
 }
 
+#loadingLogo{
+  width:150px;
+  max-width:40vw;
+  height:auto;
+  margin-bottom:20px;
+}
+
 </style>
 </head>
 
 <body>
 
 <div id="loadingScreen">
-  <div>DXB99 MATCHUP</div>
-  <div id="loadingText">LOADING</div>
+  <img id="loadingLogo" src="logoonly.jpg" alt="DXB99 Logo">
+  <div id="loadingText">MATCHUP LOADING</div>
 </div>
 
 <div id="deviceDebug" style="text-align:center; font-size:12px; opacity:0.6; margin-bottom:8px;"></div>
@@ -2427,13 +2434,15 @@ setInterval(() => cloudSync(false), 5000);
 
 /* Loading animation */
 let loadingDots = 0;
+
 setInterval(() => {
 
   const el = document.getElementById("loadingText");
   if(!el) return;
 
   loadingDots = (loadingDots + 1) % 4;
-  el.textContent = "LOADING" + ".".repeat(loadingDots);
+
+  el.textContent = "MATCHUP LOADING" + ".".repeat(loadingDots);
 
 }, 400);
 
