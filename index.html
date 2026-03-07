@@ -431,6 +431,26 @@ button.danger{
   }
 }
 
+/* Matchup banner flash animation */
+@keyframes matchupFlash{
+  0%{
+    transform: scale(1);
+    box-shadow: 0 0 0 rgba(255,255,255,0);
+  }
+  40%{
+    transform: scale(1.04);
+    box-shadow: 0 0 30px rgba(255,255,255,0.9);
+  }
+  100%{
+    transform: scale(1);
+    box-shadow: 0 0 0 rgba(255,255,255,0);
+  }
+}
+
+.matchup-flash{
+  animation: matchupFlash 0.6s ease;
+}    
+
     .diff-0.selected-option { box-shadow: 0 0 14px #581c87; }
     .diff-1.selected-option { box-shadow: 0 0 14px #1e3a8a; }
     .diff-2.selected-option { box-shadow: 0 0 14px #14532d; }
