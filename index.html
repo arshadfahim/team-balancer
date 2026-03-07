@@ -1292,9 +1292,6 @@ pickerSelect.addEventListener("change", ()=>{
   resultDiv.innerHTML = "";
   lastGeneratedGroups = null;
 
-  // Clear selected banner
-  clearSelectedBanner();
-
   // Reset radios
   const allRadio = document.querySelector('input[name="diffFilter"][value="all"]');
   if(allRadio) allRadio.checked = true;
