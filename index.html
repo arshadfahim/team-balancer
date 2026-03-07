@@ -1337,13 +1337,13 @@ function updateRadioCounts(groups){
   const total = counts[0]+counts[1]+counts[2]+counts[3]+counts[4];
 
   const labels = [
-    {id:"labelAll", text:` All Options (${total})`},
-    {id:"label0", text:` Difference 0 (${counts[0]})`},
-    {id:"label1", text:` Difference 1 (${counts[1]})`},
-    {id:"label2", text:` Difference 2 (${counts[2]})`},
-    {id:"label3", text:` Difference 3 (${counts[3]})`},
-    {id:"label4", text:` Difference 4 (${counts[4]})`},
-  ];
+  {id:"labelAll", text:` All Options (${total})`},
+  {id:"label0", text:` Skill Gap 0 (${counts[0]})`},
+  {id:"label1", text:` Skill Gap 1 (${counts[1]})`},
+  {id:"label2", text:` Skill Gap 2 (${counts[2]})`},
+  {id:"label3", text:` Skill Gap 3 (${counts[3]})`},
+  {id:"label4", text:` Skill Gap 4 (${counts[4]})`}
+];
 
   labels.forEach(item=>{
     const label = document.getElementById(item.id);
