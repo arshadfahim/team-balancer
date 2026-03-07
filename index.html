@@ -547,7 +547,6 @@ button.danger{
 #label2 { background:#14532d; color:white; }
 #label3 { background:#a16207; color:white; }
 #label4 { background:#9a3412; color:white; }
-#label5 { background:#7f1d1d; color:white; }
 
 .controls label{
   padding:8px 10px;
@@ -751,7 +750,6 @@ button.danger{
 <label id="label2"><input type="radio" name="diffFilter" value="2"><span>Skill Gap 2</span></label>
 <label id="label3"><input type="radio" name="diffFilter" value="3"><span>Skill Gap 3</span></label>
 <label id="label4"><input type="radio" name="diffFilter" value="4"><span>Skill Gap 4</span></label>
-<label id="label5"><input type="radio" name="diffFilter" value="5"><span>Skill Gap 5+</span></label>
         </div>
       </div>
 
@@ -1325,7 +1323,7 @@ function getSelectedDiff(){
 function updateRadioCounts(groups){
   if(!groups) return;
 
-  const counts = {0:0,1:0,2:0,3:0,4:0,5:0};
+  const counts = {0:0,1:0,2:0,3:0,4:0};
 
   [0,1,2,3,4,5].forEach(d=>{
     if(!groups[d]) return;
@@ -1345,7 +1343,6 @@ function updateRadioCounts(groups){
     {id:"label2", text:` Difference 2 (${counts[2]})`},
     {id:"label3", text:` Difference 3 (${counts[3]})`},
     {id:"label4", text:` Difference 4 (${counts[4]})`},
-    {id:"label5", text:` Difference 5+ (${counts[5]})`},
   ];
 
   labels.forEach(item=>{
@@ -1402,7 +1399,7 @@ showStatus("Select the Match Maker before generating matchups.", "error");
   const half = Math.floor(playersCount / 2);
   const combos = combinations(selected, half);
 
-  const groups = {0:[],1:[],2:[],3:[],4:[],5:[]};
+  const groups = {0:[],1:[],2:[],3:[],4:[]};
   const seen = new Set();
 
   combos.forEach(teamA=>{
@@ -1432,14 +1429,6 @@ showStatus("Select the Match Maker before generating matchups.", "error");
 
 if(diff <= 4){
   groups[diff].push({
-    blue, red,
-    skillBlue, skillRed,
-    diff,
-    teamKey: key,
-    playersCount
-  });
-}else{
-  groups[5].push({
     blue, red,
     skillBlue, skillRed,
     diff,
