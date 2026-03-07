@@ -1316,6 +1316,10 @@ pickerSelect.addEventListener("change", ()=>{
   // Reset player attendance
   renderAttendance(true);
 
+document.querySelectorAll('#attendance input[type="checkbox"]').forEach(cb=>{
+  cb.disabled = !pickerSelect.value;
+});  
+
 });
 
 /* =========================
