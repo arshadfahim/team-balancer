@@ -2373,24 +2373,28 @@ if(!lastGeneratedGroups){
 }
 
   const restoredOption = {
-    blue: latest.blue,
-    red: latest.red,
-    skillBlue: latest.skillBlue,
-    skillRed: latest.skillRed,
-    diff: latest.diff,
-    playersCount: latest.playersCount
-  };
+  blue: latest.blue,
+  red: latest.red,
+  skillBlue: latest.skillBlue,
+  skillRed: latest.skillRed,
+  diff: latest.diff,
+  playersCount: latest.playersCount
+};
 
 showSelectedBanner(restoredOption, latest.picker);
-selectedTeamBanner.style.display = "block";
 
-// Update Matchup page banner
+// Only show Generator banner if Generator tab is open
+if(generatorPage.style.display !== "none"){
+  selectedTeamBanner.style.display = "block";
+}
+
+// Update Matchup banner only if Matchup tab is open
 const matchupBanner = document.getElementById("matchupBanner");
 const matchupPickedBy = document.getElementById("matchupPickedBy");
 const matchupTeamLines = document.getElementById("matchupTeamLines");
 const matchupTimeAgo = document.getElementById("matchupTimeAgo");
 
-if(matchupBanner){
+if(matchupBanner && document.getElementById("matchupPage").style.display !== "none"){
   matchupPickedBy.innerHTML = selectedPickedBy.innerHTML;
   matchupTeamLines.innerHTML = selectedTeamLines.innerHTML;
   matchupTimeAgo.innerHTML = selectedTimeAgo.innerHTML;
