@@ -95,15 +95,6 @@ h2, h3{
     }
 
     /* Selected team columns */
-.selected-teams-grid{
-  display:grid;
-  grid-template-columns: 1fr 1fr;
-  gap:20px;
-  justify-content:center;
-  align-items:start;
-  margin:10px auto;
-  max-width:500px;
-}
 
 .selected-team-col{
   text-align:center;
@@ -796,17 +787,13 @@ The goal is to keep matches <b>competitive, fair, and balanced</b> even when tea
 
     <!-- Admin -->
     <div id="adminPage" style="display:none;">
-      #adminPage h3{
-  text-align:center;
-}
+      <h3 style="text-align:center;">Admin Panel</h3>
       <div id="adminSection"></div>
-    </div>
+</div>
 
     <!-- History -->
     <div id="historyPage" style="display:none;">
-      #historyPage h3{
-  text-align:center;
-}
+      <h3 style="text-align:center;">History</h3>
 
 <div class="history-controls">
   <select id="historyFilter"></select>
@@ -835,8 +822,7 @@ The goal is to keep matches <b>competitive, fair, and balanced</b> even when tea
 const ADMIN_PASSWORD = "UT4L!FE";
 const MATCHUP_LIFETIME = 60000; // 1 minute
 
-  function showStatus(message, type = "info", persistent = false) {
-  function showStatus(message, type = "info", persistent = false) {
+function showStatus(message, type = "info", persistent = false) {
   const bar = document.getElementById("statusBar");
   if (!bar) return;
 
@@ -1349,7 +1335,7 @@ function updateRadioCounts(groups){
 
   const counts = {0:0,1:0,2:0,3:0,4:0};
 
-  [0,1,2,3,4,5].forEach(d=>{
+  [0,1,2,3,4].forEach(d=>{
     if(!groups[d]) return;
     if(d === 0){
       counts[d] = groups[d].length;
@@ -1380,7 +1366,7 @@ if(span) span.textContent = item.text;
 }
 
 function updateDiffAvailability(groups){
-  [0,1,2,3,4,5].forEach(d=>{
+  [0,1,2,3,4].forEach(d=>{
     const radio = document.querySelector('input[name="diffFilter"][value="'+d+'"]');
     if(!radio) return;
     const label = radio.parentElement;
@@ -1524,7 +1510,7 @@ function showSelectedBanner(option, picker, flash=false){
     </div>
 
     <div class="selected-footer">
-      Team Difference: ${option.diff} | ${option.playersCount} Players
+      Skill Gap: ${option.diff} | ${option.playersCount} Players
     </div>
   `;
 
@@ -1576,7 +1562,7 @@ if(selectedTeamKey && option.teamKey === selectedTeamKey){
       info.innerHTML = `
         <span class="team-line">🔵 BLUE TEAM (${option.skillBlue}): ${[...option.blue].sort().join(", ")}</span>
         <span class="team-line">🔴 RED TEAM (${option.skillRed}): ${[...option.red].sort().join(", ")}</span>
-        <span class="team-line">Team Difference: ${option.diff}</span>
+        <span class="team-line">Skill Gap: ${option.diff}</span>
       `;
 
       const buttonArea = document.createElement("div");
